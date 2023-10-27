@@ -41,7 +41,7 @@ const SignUp = () => {
         user: {
           email: data.email,
           password: data.password,
-          user_name: data.username
+          username: data.username
         }
       }
       await dispatch(signUpAsync(sendData));
