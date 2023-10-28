@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Input, Row } from "reactstrap";
@@ -10,11 +10,14 @@ import {searchAds} from "../../../store/reducers/ads.reducer"
 const Fliter = () => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
-
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(searchAds(searchValue))
+  },[searchValue])
+  
   const handleInputChange = (event) => {
-    // setSearchValue(event.target.value);
-    dispatch(searchAds(event.target.value))
+    setSearchValue(event.target.value);
   };
 
   const submit = (e)=> {

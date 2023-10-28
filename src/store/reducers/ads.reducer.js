@@ -26,7 +26,9 @@ export function deleteAdsAsync(id) {
 
 
 export function searchAds(searchString){
-  return (dispatch, _getState)=>{
-    dispatch(searchAd(searchString))
-  }
+  getAdsAsync()
+    return (dispatch, _getState)=>{
+      dispatch(searchAd(searchString))
+    }
+
 }
