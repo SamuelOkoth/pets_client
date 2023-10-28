@@ -28,11 +28,11 @@ const Ad = ({deleteAd, ads}) => {
                 <i className="uil uil-heart-alt fs-18"></i>
               </Link>
             </div>
-            <div className="delete-icon">
+            {/* <div className="delete-icon">
               <div onClick={() => deleteAd(petAdDetail.id)}>
                 <i className="uil uil-trash-alt fs-18"></i>
               </div>
-            </div>
+            </div> */}
             <div className="p-4">
               <Row className="align-items-center">
                 <Col md={2}>
