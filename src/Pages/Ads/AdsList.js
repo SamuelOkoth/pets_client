@@ -13,7 +13,7 @@ import {getAdsAsync, deleteAdsAsync} from '../../store/reducers/ads.reducer'
 const AdsList = () => {
   document.title = "Ads List | Petshelpful";
   const dispatch = useDispatch()
-  const ads = useSelector(state => state.ads.ads);
+  const ads = useSelector(state => state.ads.filteredAds);
 
   const fetchData = async () => {
     const response = await dispatch(getAdsAsync());

@@ -35,9 +35,10 @@ function App() {
   useEffect(() => {
     let currentlang = localStorage.getItem("lang");
     i18next.changeLanguage(currentlang);
+    document.body.dir = i18next.language === "ar" ? "rtl" : "ltr";
   }, []);
     i18next.on("languageChanged", () => {
-    document.body.dir = i18next.language === "ar" ? "rtl" : "ltr";
+      document.body.dir = i18next.language === "ar" ? "rtl" : "ltr";
   });
   return (
     <React.Fragment>

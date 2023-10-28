@@ -37,7 +37,7 @@ const Ad = ({deleteAd, ads}) => {
               <Row className="align-items-center">
                 <Col md={2}>
                   <div className="text-center mb-4 mb-md-0">
-                    <Link to="/AdDetails">
+                    <Link to={"/ads/"+ petAdDetail.id}>
                       <img
                         src={petAdDetail.pet_image_url}
                         alt=""
