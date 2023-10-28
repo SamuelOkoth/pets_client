@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 //Import Images
 import jobImages2 from "../../../assets/images/featured-job/img-02.png";
 
-const RightSideContent = () => {
+const RightSideContent = ({pet}) => {
   //Apply Now Model
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
@@ -23,7 +23,7 @@ const {t} =useTranslation();
                   <i className="uil uil-star-half-alt icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Age</h6>
-                    <p className="text-muted mb-0"> 0-3 Years</p>
+                    <p className="text-muted mb-0">{pet.agee} Years</p>
                   </div>
                 </div>
               </li>
@@ -32,7 +32,7 @@ const {t} =useTranslation();
                   <i className="uil uil-location-point icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">{t('location')}</h6>
-                    <p className="text-muted mb-0"> New york</p>
+                    <p className="text-muted mb-0"> {pet.country}</p>
                   </div>
                 </div>
               </li>
@@ -41,20 +41,20 @@ const {t} =useTranslation();
                   <i className="uil uil-usd-circle icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Offered Price</h6>
-                    <p className="text-muted mb-0">35k - 45k</p>
+                    <p className="text-muted mb-0">{pet.price}</p>
                   </div>
                 </div>
               </li>
              
              
               <li>
-                <div className="d-flex mt-4">
+                {/* <div className="d-flex mt-4">
                   <i className="uil uil-history icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Date Posted</h6>
                     <p className="text-muted mb-0">Posted 2 hrs ago</p>
                   </div>
-                </div>
+                </div> */}
               </li>
             </ul>
             <div className="mt-3">

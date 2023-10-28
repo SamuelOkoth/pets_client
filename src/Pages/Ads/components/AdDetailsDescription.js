@@ -5,24 +5,22 @@ import { Card, CardBody, Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import AdSwiper from "./AdSwiper";
 
-const JobDetailsDescription = () => {
+const JobDetailsDescription = ({ pet }) => {
   return (
     <React.Fragment>
       <Card className="job-detail overflow-hidden">
         <div>
-         
-          <AdSwiper/>
+          <AdSwiper />
         </div>
         <CardBody className="p-4">
           <div>
             <Row>
               <Col md={8}>
-                <h5 className="mb-1">Pet Name</h5>
+                <h5 className="mb-1">{pet.name}</h5>
                 <ul className="list-inline text-muted mb-0">
                   <li className="list-inline-item">
-                    <i className="mdi mdi-account"></i> Owner Name
+                    <i className="mdi mdi-account"></i> {pet.email}
                   </li>
-                
                 </ul>
               </Col>
               <Col lg={4}>
@@ -34,7 +32,6 @@ const JobDetailsDescription = () => {
                       </Link>
                     </div>
                   </li>
-                  
                 </ul>
               </Col>
             </Row>
@@ -72,26 +69,9 @@ const JobDetailsDescription = () => {
           <div className="mt-4">
             <h5 className="mb-3">Ad Description</h5>
             <div className="job-detail-desc">
-              <p className="text-muted mb-0">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
-              </p>
+              <p className="text-muted mb-0">{pet.description}</p>
             </div>
           </div>
-
-          
-
-          
-
-       
 
           <div className="mt-4 pt-3">
             <ul className="list-inline mb-0">

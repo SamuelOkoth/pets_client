@@ -16,6 +16,7 @@ const AdDetails = () => {
   const getAdsDetails = async ()=>{
     try{
       const response = await axiosClient.get(`api/v1/ads/${id}}`).then((response) => response.data);
+      setAdDetails(response)
       console.log(response)
     }catch(error){
       console.error(error.message)
@@ -28,11 +29,11 @@ const AdDetails = () => {
         <Container>
           <Row>
             <Col lg={8}>
-              <AdDetailsDescription />
-              <RelatedAd />
+              <AdDetailsDescription pet={adDetails}/>
+              {/* <RelatedAd /> */}
             </Col>
             <Col lg={4} className="mt-4 mt-lg-0">
-              <RightSideContent />
+              <RightSideContent pet={adDetails}/>
             </Col>
           </Row>
         </Container>
