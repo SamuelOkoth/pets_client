@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   ads: [],
-  filteredAds: [],  // For holding search results
-  searchTerm: "",   // For holding the current search string (optional)
+  filteredAds: [], 
+  searchTerm: "",  
 };
 
 const adsSlice = createSlice({

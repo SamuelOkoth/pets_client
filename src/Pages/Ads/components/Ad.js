@@ -9,7 +9,7 @@ import timeAgo from "../../../utils/timeAgo";
 const Ad = ({deleteAd, ads}) => {
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
-
+  console.log(ads);
   return (
     <React.Fragment>
       <div>

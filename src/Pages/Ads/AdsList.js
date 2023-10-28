@@ -19,7 +19,7 @@ const AdsList = () => {
     const response = await dispatch(getAdsAsync());
   };
   const deleteAd = async (id) => {
-    const response = await dispatch(deleteAdsAsync(id));
+    // const response = await dispatch(deleteAdsAsync(id));
   };
 
 

@@ -14,7 +14,6 @@ const Fliter = () => {
 
   useEffect(()=>{
     dispatch(searchAds(searchValue))
-    console.log(searchValue)
   },[searchValue])
   
   const handleInputChange = (event) => {
