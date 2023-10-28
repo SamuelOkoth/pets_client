@@ -1,3 +1,3 @@
-let apiEndpoint = `http://127.0.0.1:3000/`;
+let apiEndpoint = `https://monkfish-app-5xbkg.ondigitalocean.app/`;
 
 export default apiEndpoint;
