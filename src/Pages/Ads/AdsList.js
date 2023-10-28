@@ -38,7 +38,7 @@ const AdsList = () => {
                 <Fliter />
                 <Popular ads={ads}/>
                 <Ad deleteAd={deleteAd} ads={ads}/>
-                <Pagination />
+                {/* <Pagination /> */}
               </div>
             </Col>
             <Sidebar />
