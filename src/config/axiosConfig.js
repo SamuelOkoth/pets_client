@@ -2,9 +2,9 @@ import apiEndpoint from "./environment";
 import store from "../store";
 import axios from "axios";
 
-const axiosClient = axios.create();
+export const axiosClient = axios.create();
 
-const authHeader = (config) => {
+export const authHeader = (config) => {
   const state = store.getState();
   const token = state.auth.token;
   config.headers = {

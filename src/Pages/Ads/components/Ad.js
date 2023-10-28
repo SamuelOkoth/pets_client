@@ -51,7 +51,7 @@ const Ad = ({deleteAd, ads}) => {
                 <Col md={3}>
                   <div className="mb-2 mb-md-0">
                     <h5 className="fs-18 mb-0">
-                      <Link to="/AdDetails" className="text-dark">
+                      <Link to={"/ads/"+ petAdDetail.id} className="text-dark">
                         {petAdDetail.name}
                       </Link>
                     </h5>

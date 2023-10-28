@@ -1,5 +1,5 @@
 import { postRequest, getRequest, deleteRequest } from "../../config/axiosConfig"
-import { createAd, getAd, deleteAd } from "../slices/ads.slice";
+import { createAd, getAd, deleteAd,searchAd } from "../slices/ads.slice";
 
 export function createAdsAsync(data) {
   return async (dispatch, _getState) => {
@@ -16,9 +16,17 @@ export function getAdsAsync() {
   }
 }
 
+
 export function deleteAdsAsync(id) {
   return async (dispatch, _getState) => {
     const res = await deleteRequest(`api/v1/ads/${id}`);
      dispatch(deleteAd(id));
+  }
+}
+
+
+export function searchAds(searchString){
+  return (dispatch, _getState)=>{
+    dispatch(searchAd(searchString))
   }
 }

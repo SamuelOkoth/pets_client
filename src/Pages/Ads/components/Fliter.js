@@ -5,20 +5,26 @@ import { Input, Row } from "reactstrap";
 import CountryOptions from "./CountryOptions";
 import Type from "./Type";
 import { useTranslation } from "react-i18next";
-
+import { useDispatch } from "react-redux";
+import {searchAds} from "../../../store/reducers/ads.reducer"
 const Fliter = () => {
   const { t } = useTranslation();
-  const [searchValue, setSearchValue] = useState({search_query: '', country_options: '', pet_type: ''});
+  const [searchValue, setSearchValue] = useState("");
 
+  const dispatch = useDispatch();
   const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
+    // setSearchValue(event.target.value);
+    dispatch(searchAds(event.target.value))
   };
 
-  console.log('the value of state------------------', searchValue);
+  const submit = (e)=> {
+    e.preventDefault()
+  }
+
   return (
     <React.Fragment>
       <div className="job-list-header">
-        <Form action="#">
+        <Form onSubmit={submit}>
           <Row className="g-2">
             <Col lg={3} md={6}>
               <div className="filler-job-form">
@@ -27,7 +33,7 @@ const Fliter = () => {
                   type="search"
                   className="form-control filter-input-box"
                   id="exampleFormControlInput1"
-                  placeholder="Search for goods .. "
+                  placeholder="Search for ads .. "
                   style={{ marginTop: "-10px" }}
                   onChange={handleInputChange}
                 />

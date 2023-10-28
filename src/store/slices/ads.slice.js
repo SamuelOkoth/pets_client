@@ -16,6 +16,12 @@ const adsSlice = createSlice({
     },
     deleteAd: (state, action)=>{
       state.ads = state.ads.filter((ad) => ad.id !== action.payload);
+    },
+    searchAd: (state,action)=>{
+      state.ads = state.ads.filter((ad)=> ad.name.includes(action.payload))
+      // if(!action.payload){
+      //   state.ads = 
+      // }
     }
   },
 });
@@ -23,6 +29,7 @@ const adsSlice = createSlice({
 export const createAd = adsSlice.actions.createAd
 export const getAd = adsSlice.actions.getAd
 export const deleteAd = adsSlice.actions.deleteAd
+export const searchAd = adsSlice.actions.searchAd
 
 
 const AdsSlice = adsSlice.reducer;

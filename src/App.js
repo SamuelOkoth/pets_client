@@ -52,7 +52,7 @@ function App() {
       <Routes>
         <Route exact path="*" element={<Error404 />} />
         <Route exact path="/" element={<AdsList />} />
-        <Route exact path="/AdDetails" element={<AdDetails />} />
+        <Route exact path="/ads/:id" element={<AdDetails />} />
         <Route exact path="/blogs" element={<BlogsList />} />
         <Route exact path="/blogdetails" element={<BlogDetails />} />
         <Route exact path="/about" element={<AboutUs />} />

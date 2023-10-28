@@ -159,26 +159,26 @@ const SignIn = () => {
                               </div>
                               <div>
                                 <ul className="blog-social-menu list-inline mb-0 text-center">
-                                  <li className="list-inline-item">
+                                  {/* <li className="list-inline-item">
                                     <Link
                                       to="#"
                                       className="social-link bg-primary-subtle text-primary"
                                     >
                                       <Icon icon="ri:facebook-fill" />
                                     </Link>
-                                  </li>
-                                  <li className="list-inline-item">
+                                  </li> */}
+                                  {/* <li className="list-inline-item">
                                     <Link
                                       to="#"
                                       className="social-link bg-danger-subtle text-danger"
                                     >
                                       <Icon icon="grommet-icons:google" />
                                     </Link>
-                                  </li>
+                                  </li> */}
                                 </ul>
                               </div>
                               <br />
-                              <p className="text-center ">{t("signin_or")}</p>
+                              {/* <p className="text-center ">{t("signin_or")}</p> */}
                               <Form
                                 onSubmit={handleSubmit(onSubmit)}
                                 className="auth-form"

@@ -115,14 +115,14 @@ const SignUp = () => {
                               <div>
                                 <ul className="blog-social-menu list-inline mb-0 text-center">
                                   <li className="list-inline-item">
-                                    <LoginSocialFacebook
+                                    {/* <LoginSocialFacebook
                                       appId=""
                                       fields="name,email,picture"
                                       onResolve={(response) => {console.log('tttttttttttttttttttttttttttt',response)}}
                                       onReject={(error) => { console.log(error)}}
                                     >
-                                      <FacebookLoginButton/>
-                                    </LoginSocialFacebook>
+                                   <FacebookLoginButton/>
+                                    </LoginSocialFacebook> */}
                                     {/* <FacebookLogin
                                       appId=""
                                       autoLoad={true}
@@ -131,16 +131,16 @@ const SignUp = () => {
                                       callback={responseFacebook} /> */}
                                   </li>
                                   <li className="list-inline-item">
-                                    <GoogleOAuthProvider clientId="995531737791-b7ro0j22bd3ogfoa8896o80nb8gm1h3m.apps.googleusercontent.com">
+                                    {/* <GoogleOAuthProvider clientId="995531737791-b7ro0j22bd3ogfoa8896o80nb8gm1h3m.apps.googleusercontent.com">
                                         <React.StrictMode>
                                             <LoginWithGoogle />
                                         </React.StrictMode>
-                                    </GoogleOAuthProvider>
+                                    </GoogleOAuthProvider> */}
                                   </li>
                                 </ul>
                               </div>
                               <br />
-                              <p className="text-center ">{t("or")}</p>
+                              {/* <p className="text-center ">{t("or")}</p> */}
 
                               <Form onSubmit={handleSubmit(onSubmit)} className="auth-form">
                                 <div className="mb-3">
