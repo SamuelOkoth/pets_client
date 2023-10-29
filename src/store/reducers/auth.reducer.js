@@ -5,6 +5,7 @@ export function signInAsync(data) {
   return async (dispatch, _getState) => {
     const res = await postRequest("login", data);
     dispatch(setToken(res?.status?.user_token));
+    // localStorage.setItem("token", JSON.stringify(res?.status?.user_token))
   }
 }
 
@@ -18,6 +19,7 @@ export function signUpAsync(data) {
 export function signOutAsync() {
   return async (dispatch, _getState) => {
     dispatch(setToken(null));
+    // localStorage.clear()
   }
 }
 

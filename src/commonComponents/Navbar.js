@@ -220,7 +220,7 @@ const NavBar = (props) => {
                 aria-expanded="false"
               >
                 { profileData?.profile_image ?
-                                (<img src={profileData?.profile_image ? profileData.profile_image : profileImage} alt="mdo"
+                                (<img src={profileData?.profile_image ? profileData.profile_image : ""} alt="mdo"
                                 width="35"
                                 height="35"
                                 className="rounded-circle me-1"/>) : <i className="uil uil-user fs-18 rounded-circle me-1"></i> }
@@ -247,7 +247,7 @@ const NavBar = (props) => {
                     </Link>
                   </li>
 
-                  <li>
+                  {/* <li>
                     <button
                       type="button"
                       className="dropdown-item"
@@ -256,7 +256,7 @@ const NavBar = (props) => {
                     >
                       {t("logout")}
                     </button>
-                  </li>
+                  </li> */}
                 </DropdownMenu>
               }
             </Dropdown>

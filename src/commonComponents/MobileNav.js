@@ -22,7 +22,6 @@ import flagAr from "../assets/images/flags/sudia.png";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
-
 import lightLogo from "../assets/images/main-logo.png";
 import profileImage from "../assets/images/profile.jpg";
 import { signOutAsync } from "../store/reducers/auth.reducer";
@@ -31,7 +30,7 @@ import { toast } from "react-toastify";
 const changeLang = (l) => {
   return () => {
     i18next.changeLanguage(l);
-    localStorage.setItem('lang', l);
+    localStorage.setItem("lang", l);
   };
 };
 const NavBar = (props) => {
@@ -39,7 +38,7 @@ const NavBar = (props) => {
   const [loading, setLoading] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const token = useSelector((state) => state.auth?.token);
 
   //Notification Dropdown
@@ -72,17 +71,17 @@ const NavBar = (props) => {
 
   const handleSignOut = async () => {
     try {
-      await dispatch(signOutAsync());
+      dispatch(signOutAsync());
       toast.success("User sign out successfully");
       navigate("/signin");
-
     } catch (error) {
       console.log("Error Sign Up Form:", error);
       toast.error(error?.response?.data?.status?.message);
     } finally {
+      console.log(token);
       setLoading(false);
     }
-  }
+  };
 
   //menu activation
   useEffect(() => {
@@ -146,14 +145,10 @@ const NavBar = (props) => {
     return false;
   }
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-
- const [dropdownOpen, setDropdownOpen] = useState(false);
-
-
- 
   // Set "ar" as the default language
-  const currentLanguage = localStorage.getItem('lang') || 'ar'; // Default to 'ar' if no language is set
+  const currentLanguage = localStorage.getItem("lang") || "ar"; // Default to 'ar' if no language is set
 
   const languageFlags = {
     en: flagUs,
@@ -161,9 +156,9 @@ const NavBar = (props) => {
     // Add more languages and their flag images as needed
   };
 
-const {t} = useTranslation();
+  const { t } = useTranslation();
   const toggle2 = () => setDropdownOpen((prevState) => !prevState);
-  
+  // const token = localStorage.getItem("token")
   return (
     <React.Fragment>
       <nav
@@ -177,11 +172,13 @@ const {t} = useTranslation();
             <img src={lightLogo} height="70" alt="" className="logo-dark" />
             {/* <img src={lightLogo} height="22" alt="" className="logo-light" /> */}
           </Link>
-          <ul className="header-menu list-inline d-flex align-items-center mb-0">
-            <Link to="/postyourad" className="btn btn-primary w-100">
-              {t("post_your_ad")}
-            </Link>
-          </ul>
+          {token && (
+            <ul className="header-menu list-inline d-flex align-items-center mb-0">
+              <Link to="/postyourad" className="btn btn-primary w-100">
+                {t("post_your_ad")}
+              </Link>
+            </ul>
+          )}
         </Container>
         <Container fluid className="custom-container">
           <div>
@@ -220,112 +217,122 @@ const {t} = useTranslation();
                 </Link>
               </NavItem>
               <NavItem>
-              {token?
-                <Link to="/signin" onClick={handleSignOut} className="nav-link">
-                  {t("logout")}
-                </Link>
-                :
-                <Link to="/signup" className="nav-link">
-                  {t("signup_sign_up")}
-                </Link>
-                }
+                {token ? (
+                  <Link onClick={handleSignOut} className="nav-link" to="/signin" >
+                    {t("logout")}
+                  </Link>
+                ) : (
+                  <Link to="/signup" className="nav-link">
+                    {t("signup_sign_up")}
+                  </Link>
+                )}
               </NavItem>
             </ul>
           </Collapse>
 
           <ul className="header-menu list-inline d-flex align-items-center mb-0">
-            <Link className=" list-inline-item  me-4" to="/chat">
-              <div className="header-item noti-icon position-relative">
-                <i className="mdi mdi-message-processing fs-22"></i>
-                <div className="count position-absolute">3</div>
-              </div>
-            </Link>
-            
-            <li className="list-inline-item align-middle">
-                <Dropdown
-                    isOpen={dropdownOpen}
-                    toggle={toggle2}
-                    className="d-inline-block language-switch"
-                  >
-                    <DropdownToggle tag="button" type="button" className="btn">
-                      <img src={languageFlags[currentLanguage]} alt="" height="16" />
-                    </DropdownToggle>
-                    <DropdownMenu className="dropdown-menu-end" end>
-                      <DropdownItem
-                        onClick={changeLang("ar")}
-                        className={`dropdown-item notify-item language ${currentLanguage === 'ar' ? 'active' : ''}`}
-                        data-lang="ar"
-                      >
-                        <img src={flagAr} alt="" className="me-1" height="12" />
-                        <span className="align-middle">عربي</span>
-                      </DropdownItem>
-                      <DropdownItem
-                        onClick={changeLang("en")}
-                        className={`dropdown-item notify-item language ${currentLanguage === 'en' ? 'active' : ''}`}
-                        data-lang="en"
-                      >
-                        <img src={flagUs} alt="" className="me-1" height="12" />
-                        <span className="align-middle">English</span>
-                      </DropdownItem>
-                      {/* Add more languages and their corresponding dropdown items */}
-                    </DropdownMenu>
-                  </Dropdown>
-            </li>
+            {token && (
+              <Link className=" list-inline-item  me-4" to="/chat">
+                <div className="header-item noti-icon position-relative">
+                  <i className="mdi mdi-message-processing fs-22"></i>
+                  <div className="count position-absolute">3</div>
+                </div>
+              </Link>
+            )}
 
-            
-            <Dropdown
-              onClick={() => setUserProfile(!userProfile)}
-              isOpen={userProfile}
-              toggle={dropDownuserprofile}
-              className="list-inline-item"
-            >
-              <DropdownToggle
-                to="#"
-                className="header-item"
-                id="userdropdown"
-                type="button"
-                tag="a"
-                aria-expanded="false"
+            <li className="list-inline-item align-middle">
+              <Dropdown
+                isOpen={dropdownOpen}
+                toggle={toggle2}
+                className="d-inline-block language-switch"
               >
-                <img
-                  src={profileImage}
-                  alt="mdo"
-                  width="35"
-                  height="35"
-                  className="rounded-circle me-1"
-                />{" "}
-                {/* <span className="d-none d-md-inline-block fw-medium">
+                <DropdownToggle tag="button" type="button" className="btn">
+                  <img
+                    src={languageFlags[currentLanguage]}
+                    alt=""
+                    height="16"
+                  />
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-menu-end" end>
+                  <DropdownItem
+                    onClick={changeLang("ar")}
+                    className={`dropdown-item notify-item language ${
+                      currentLanguage === "ar" ? "active" : ""
+                    }`}
+                    data-lang="ar"
+                  >
+                    <img src={flagAr} alt="" className="me-1" height="12" />
+                    <span className="align-middle">عربي</span>
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={changeLang("en")}
+                    className={`dropdown-item notify-item language ${
+                      currentLanguage === "en" ? "active" : ""
+                    }`}
+                    data-lang="en"
+                  >
+                    <img src={flagUs} alt="" className="me-1" height="12" />
+                    <span className="align-middle">English</span>
+                  </DropdownItem>
+                  {/* Add more languages and their corresponding dropdown items */}
+                </DropdownMenu>
+              </Dropdown>
+            </li>
+            {token && (
+              <Dropdown
+                onClick={() => setUserProfile(!userProfile)}
+                isOpen={userProfile}
+                toggle={dropDownuserprofile}
+                className="list-inline-item"
+              >
+                <DropdownToggle
+                  to="#"
+                  className="header-item"
+                  id="userdropdown"
+                  type="button"
+                  tag="a"
+                  aria-expanded="false"
+                >
+                  <img
+                    src={profileImage}
+                    alt="mdo"
+                    width="35"
+                    height="35"
+                    className="rounded-circle me-1"
+                  />{" "}
+                  {/* <span className="d-none d-md-inline-block fw-medium">
                 Hi, Jennifer
               </span> */}
-              </DropdownToggle>
-              <DropdownMenu
-                className="dropdown-menu-end"
-                aria-labelledby="userdropdown"
-                end
-              >
-                <li>
-                  <Link className="dropdown-item" to="/manageads">
-                    {t("manage_ads")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/favoriteads">
-                    {t("favorite_ads")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/myprofile">
-                    {t("my_profile")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/signout">
+                </DropdownToggle>
+
+                <DropdownMenu
+                  className="dropdown-menu-end"
+                  aria-labelledby="userdropdown"
+                  end
+                >
+                  <li>
+                    <Link className="dropdown-item" to="/manageads">
+                      {t("manage_ads")}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/favoriteads">
+                      {t("favorite_ads")}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/myprofile">
+                      {t("my_profile")}
+                    </Link>
+                  </li>
+                  <li>
+                     <Link onClick={handleSignOut} className="dropdown-item" to="/signin" >
                     {t("logout")}
                   </Link>
-                </li>
-              </DropdownMenu>
-            </Dropdown>
-        
+                  </li>
+                </DropdownMenu>
+              </Dropdown>
+            )}
           </ul>
         </Container>
       </nav>
