@@ -8,165 +8,103 @@ import Pagination from "./Pagination";
 
 import adImage1 from "../../../../assets/images/pet-ad.jpg";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const JobListing = () => {
+  const [myPets, setMyPets] = useState([]);
+  const [loading,setLoading] = useState(false)
   //Delete Modal
   const [modal, setModal] = useState(false);
 
   const openModal = () => setModal(!modal);
-  const {t}= useTranslation();
- 
-  const petAdList = [
-    {
-      id: 1,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 2,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 3,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 4,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 5,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 6,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 7,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 8,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-  ];
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    getMyPets()
+  }, []);
+
+  const getMyPets = async ()=>{
+    try {
+      
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      setLoading(false);
+    }
+  }
+  const updateMyPet = async (id)=>{
+    try {
+      
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      setLoading(false);
+    }
+  }
+  const deleteMyPets = async (id)=>{
+    try {
+      
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      setLoading(false);
+    }
+  }
+
   return (
     <React.Fragment>
       <Row>
         <Col lg={12}>
-          {petAdList.map((petAdDetail, key) => (
+          {myPets.map((petAdDetail, key) => (
             <Card className="job-box card mt-4" key={key}>
               <CardBody className="p-4">
-              
-                 <Row className="align-items-center">
-                <Col md={2}>
-                  <div className="text-center mb-4 mb-md-0">
-                    <Link to="/AdDetails">
-                      <img
-                        src={petAdDetail.petImg}
-                        alt=""
-                        className="img-fluid rounded-3"
-                        style={{ height: "95px" }}
-                      />
-                    </Link>
-                  </div>
-                </Col>
-
-                <Col md={3}>
-                  <div className="mb-2 mb-md-0">
-                    <h5 className="fs-18 mb-0">
-                      <Link to="/AdDetails" className="text-dark">
-                        {petAdDetail.petName}
+                <Row className="align-items-center">
+                  <Col md={2}>
+                    <div className="text-center mb-4 mb-md-0">
+                      <Link to="/AdDetails">
+                        <img
+                          src={petAdDetail.petImg}
+                          alt=""
+                          className="img-fluid rounded-3"
+                          style={{ height: "95px" }}
+                        />
                       </Link>
-                    </h5>
-                    <p className="text-muted fs-14 mb-0">
-                      {petAdDetail.petOwner}
-                    </p>
-                  </div>
-                </Col>
-
-                <Col md={3}>
-                  <div className="d-flex mb-2">
-                    <div className="flex-shrink-0">
-                      <i className="mdi mdi-map-marker text-primary me-1"></i>
                     </div>
-                    <p className="text-muted mb-0">
-                      {petAdDetail.location}
-                    </p>
-                  </div>
-                </Col>
+                  </Col>
 
-                
-
-                <Col md={2}>
-                  <div className="d-flex mb-0">
-                    <div className="flex-shrink-0">
-                      {/* <i className="uil uil-clock-three text-primary me-1"></i> */}
-                      <i className="uil uil-wallet text-primary me-1"></i>
+                  <Col md={3}>
+                    <div className="mb-2 mb-md-0">
+                      <h5 className="fs-18 mb-0">
+                        <Link to="/AdDetails" className="text-dark">
+                          {petAdDetail.petName}
+                        </Link>
+                      </h5>
+                      <p className="text-muted fs-14 mb-0">
+                        {petAdDetail.petOwner}
+                      </p>
                     </div>
-                    <p className="text-muted mb-0">
-                      {" "}
-                      {petAdDetail.petPrice}
-                    </p>
-                  </div>
-                </Col>
-                <Col md={2} className="align-self-center">
+                  </Col>
+
+                  <Col md={3}>
+                    <div className="d-flex mb-2">
+                      <div className="flex-shrink-0">
+                        <i className="mdi mdi-map-marker text-primary me-1"></i>
+                      </div>
+                      <p className="text-muted mb-0">{petAdDetail.location}</p>
+                    </div>
+                  </Col>
+
+                  <Col md={2}>
+                    <div className="d-flex mb-0">
+                      <div className="flex-shrink-0">
+                        {/* <i className="uil uil-clock-three text-primary me-1"></i> */}
+                        <i className="uil uil-wallet text-primary me-1"></i>
+                      </div>
+                      <p className="text-muted mb-0"> {petAdDetail.petPrice}</p>
+                    </div>
+                  </Col>
+                  <Col md={2} className="align-self-center">
                     <ul className="list-inline mt-3 mb-0">
                       <li
                         className="list-inline-item"
@@ -197,12 +135,12 @@ const JobListing = () => {
                       </li>
                     </ul>
                   </Col>
-              </Row>
+                </Row>
               </CardBody>
             </Card>
           ))}
         </Col>
-        <Pagination />
+        {/* <Pagination /> */}
       </Row>
 
       <div
@@ -229,13 +167,10 @@ const JobListing = () => {
             <ModalBody>
               <div>
                 <h6 className="text-danger">
-                  <i className="uil uil-exclamation-triangle"></i> 
+                  <i className="uil uil-exclamation-triangle"></i>
                   {t("delete_ad_subtitle")}
                 </h6>
-                <p className="text-muted">
-                
-                 {t("delete_ad_text")}
-                </p>
+                <p className="text-muted">{t("delete_ad_text")}</p>
               </div>
             </ModalBody>
             <div className="modal-footer">
@@ -244,7 +179,7 @@ const JobListing = () => {
                 onClick={openModal}
                 className="btn btn-primary btn-sm"
               >
-               {t("cancel")}
+                {t("cancel")}
               </button>
               <button type="button" className="btn btn-danger btn-sm">
                 {t("yes_delete")}
