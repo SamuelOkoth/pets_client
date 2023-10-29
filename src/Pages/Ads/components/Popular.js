@@ -4,31 +4,31 @@ import { Link } from "react-router-dom";
 
 const Popular = ({ads}) => {
   const popular = [
-    {
-      id: 1,
-      count: 20,
-      petName: "Dogs"
-    },
-    {
-      id: 2,
-      count: 18,
-      petName: "Cats"
-    },
-    {
-      id: 3,
-      count: 10,
-      petName: "Rabbits"
-    },
-    {
-      id: 4,
-      count: 15,
-      petName: "Pigeons"
-    },
-    {
-      id: 5,
-      count: 28,
-      petName: "Parrot"
-    }
+    // {
+    //   id: 1,
+    //   count: 20,
+    //   petName: "Dogs"
+    // },
+    // {
+    //   id: 2,
+    //   count: 18,
+    //   petName: "Cats"
+    // },
+    // {
+    //   id: 3,
+    //   count: 10,
+    //   petName: "Rabbits"
+    // },
+    // {
+    //   id: 4,
+    //   count: 15,
+    //   petName: "Pigeons"
+    // },
+    // {
+    //   id: 5,
+    //   count: 28,
+    //   petName: "Parrot"
+    // }
   ];
   const {t} = useTranslation();
   return (

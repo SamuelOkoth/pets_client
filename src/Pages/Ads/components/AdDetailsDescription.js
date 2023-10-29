@@ -4,13 +4,15 @@ import { Card, CardBody, Col, Row } from "reactstrap";
 //Import Images
 import { Link } from "react-router-dom";
 import AdSwiper from "./AdSwiper";
+import AdImage3 from "../../../assets/images/ads/ad-image-3.jpg";
 
 const JobDetailsDescription = ({ pet }) => {
   return (
     <React.Fragment>
       <Card className="job-detail overflow-hidden">
-        <div>
-          <AdSwiper />
+        <div >
+          {/* <AdSwiper /> */}
+          <img className="pet-detail-img" src={pet.pet_image_url} />
         </div>
         <CardBody className="p-4">
           <div>

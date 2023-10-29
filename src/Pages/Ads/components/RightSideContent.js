@@ -23,7 +23,7 @@ const {t} =useTranslation();
                   <i className="uil uil-star-half-alt icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Age</h6>
-                    <p className="text-muted mb-0">{pet.agee} Years</p>
+                    <p className="text-muted mb-0">{pet.age} Years</p>
                   </div>
                 </div>
               </li>
