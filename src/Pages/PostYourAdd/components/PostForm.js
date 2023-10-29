@@ -32,22 +32,7 @@ const PostForm = () => {
       toast.success("Ad created successfully");
       // navigate("/signin");
     } catch (error) {
-      function displayErrorToasts(errors) {
-        errors.forEach((error, index) => {
-          toast.error(error, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000, // Adjust as needed
-            closeButton: true,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            progress: undefined,
-            toastId: index,
-          });
-        });
-      }
-      console.log("Error On Ad Form:", error?.response?.data?.error);
-      displayErrorToasts(error?.response?.data?.error);
+      toast(error?.response?.data?.error);
     } finally {
       setLoading(false);
     }
