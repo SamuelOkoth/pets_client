@@ -27,7 +27,6 @@ const JobListing = () => {
     try {
       const response = await axiosClient.get(`/favourite_ads`).then((response) => response.data);
       setPetAdList(response);
-      console.log(response);
     } catch (error) {
       console.error(error.message)
     }
