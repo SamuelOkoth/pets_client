@@ -105,7 +105,7 @@ const ContactContent = () => {
                     <i className="uil uil-envelope"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
-                    <p className="mb-0">info@petshelpful.com</p>
+                    <p className="mb-0 email">info@petshelpful.com</p>
                   </div>
                 </div>
                 <div className="d-flex text-muted align-items-center mt-2">
@@ -113,7 +113,7 @@ const ContactContent = () => {
                     <i className="uil uil-phone-alt"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
-                    <p className="mb-0">+966 56 322 8055</p>
+                    <p className="mb-0 phone ">+966 56 322 8055</p>
                   </div>
                 </div>
               </div>
@@ -121,16 +121,6 @@ const ContactContent = () => {
           </Row>
         </Container>
       </section>
-      {/*<div className="map">
-        <iframe
-          title="maps"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509157.364974411!2d-123.79641389801948!3d37.193115265681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia%2C%20USA!5e0!3m2!1sen!2sin!4v1628684675253!5m2!1sen!2sin"
-          height="350"
-          style={{ border: `0`, width: `100%` }}
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
-  </div>*/}
     </React.Fragment>
   );
 };
