@@ -22,12 +22,13 @@ const Fliter = () => {
 
   const submit = (e)=> {
     e.preventDefault()
+    // cons
   }
 
   return (
     <React.Fragment>
       <div className="job-list-header">
-        <Form onSubmit={submit}>
+        <form onSubmit={submit}>
           <Row className="g-2">
             <Col lg={3} md={6}>
               <div className="filler-job-form">
@@ -56,12 +57,12 @@ const Fliter = () => {
               </div>
             </Col>
             <Col lg={3} md={6}>
-              <Link to="#" className="btn btn-primary w-100">
+              <button type="submit" className="btn btn-primary w-100">
                 <i className="uil uil-filter"></i>  {t('filter')}
-              </Link>
+              </button>
             </Col>
           </Row>
-        </Form>
+        </form>
       </div>
     </React.Fragment>
   );

@@ -58,7 +58,7 @@ const {t} =useTranslation();
                         </button>
                       </form>
                     </div>
-                    <div className="area-range slidecontainer">
+                    {/* <div className="area-range slidecontainer">
                       <div className="form-label mb-4">
                         {t("range")}: {value}.00 {t("miles")}
                         <span
@@ -76,7 +76,7 @@ const {t} =useTranslation();
                           value > 50 ? "slider-50" : "slider-0"
                         }`}
                       />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </Collapse>

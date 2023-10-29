@@ -1,5 +1,5 @@
 import { postRequest, getRequest, deleteRequest } from "../../config/axiosConfig";
-import { createAd, getAd, deleteAd, searchAd } from "../slices/ads.slice";
+import { createAd, getAd, deleteAd, searchAd,complexFilter } from "../slices/ads.slice";
 
 export function createAdsAsync(data) {
   return async (dispatch, _getState) => {
@@ -26,5 +26,10 @@ export function deleteAdsAsync(id) {
 export function searchAds(searchString) {
   return (dispatch, _getState) => {
     dispatch(searchAd(searchString));
+  };
+}
+export function complexSearch({}) {
+  return (dispatch, _getState) => {
+    dispatch(complexFilter({}));
   };
 }

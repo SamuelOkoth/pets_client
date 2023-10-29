@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-const CountryOptions = () => {
+const CountryOptions = ({setSearchValue}) => {
   const options = [
     { value: "0", label: "Afghanistan" },
     { value: "1", label: "land Islands" },
