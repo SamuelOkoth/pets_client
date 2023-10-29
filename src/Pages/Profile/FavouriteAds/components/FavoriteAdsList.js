@@ -17,94 +17,6 @@ const JobListing = () => {
   const openModal = () => setModal(!modal);
  
   const petAdList = [
-    {
-      id: 1,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 2,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 3,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 4,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 5,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 6,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 7,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
-    {
-      id: 8,
-      petImg: adImage1,
-      petName: "Creative Agency",
-      petOwner: "Product Director",
-      location: " Escondido,California",
-      adPostTime: "3 min ago",
-      petPrice:"12",
-      addclassNameBookmark: false,
-      age: "2 - 3 years",
-    },
   ];
   return (
     <React.Fragment>
@@ -202,7 +114,7 @@ const JobListing = () => {
             </Card>
           ))}
         </Col>
-        <Pagination />
+        {/* <Pagination /> */}
       </Row>
 
       <div
