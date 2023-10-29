@@ -78,7 +78,6 @@ const NavBar = (props) => {
       console.log("Error Sign Up Form:", error);
       toast.error(error?.response?.data?.status?.message);
     } finally {
-      console.log(token);
       setLoading(false);
     }
   };
