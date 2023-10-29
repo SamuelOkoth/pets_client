@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Col, Collapse, Input, Label } from "reactstrap";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { searchCountry } from "../../../store/reducers/ads.reducer";
 const Sidebar = () => {
+  const [country, setCountry] = useState();
   const [toggleFirst, setToggleFirst] = useState(true);
   const [toggleSecond, setToggleSecond] = useState(true);
   // const [toggleThird, setToggleThird] = useState(true);
@@ -16,10 +19,17 @@ const Sidebar = () => {
   };
 
   const [isDateChecked, setIsDateChecked] = useState(true);
+  const dispatch = useDispatch();
   const handleDateOnChange = () => {
     setIsDateChecked(!isDateChecked);
   };
-const {t} =useTranslation();
+  useEffect(() => {
+    dispatch(searchCountry(country));
+  }, [country]);
+  const searchByCountry = (e) => {
+    e.preventDefault();
+  };
+  const { t } = useTranslation();
 
   return (
     <React.Fragment>
@@ -37,15 +47,19 @@ const {t} =useTranslation();
                   role="button"
                   id="collapseExample"
                 >
-                  {t('location')}
+                  {t("location")}
                 </Button>
               </h2>
               <Collapse isOpen={toggleFirst}>
                 <div className="accordion-body">
                   <div className="side-title">
                     <div className="mb-3">
-                      <form className="position-relative">
+                      <form
+                        className="position-relative"
+                        onSubmit={searchByCountry}
+                      >
                         <Input
+                          onChange={(e) => setCountry(e.target.value)}
                           className="form-control"
                           type="search"
                           placeholder="Search..."
@@ -93,7 +107,7 @@ const {t} =useTranslation();
                   role="button"
                   id="collapseExample"
                 >
-                  {t('pet_age')}
+                  {t("pet_age")}
                 </Button>
               </h2>
               <Collapse isOpen={toggleSecond}>
@@ -252,7 +266,7 @@ const {t} =useTranslation();
                   role="button"
                   id="collapseExample"
                 >
-                 {t('date_posted')}
+                  {t("date_posted")}
                 </Button>
               </h2>
               <Collapse isOpen={toggleFourth}>
@@ -331,7 +345,7 @@ const {t} =useTranslation();
                         className="form-check-label ms-2 text-muted"
                         htmlFor="flexCheckChecked8"
                       >
-                       {t("last_14_days")}
+                        {t("last_14_days")}
                       </Label>
                     </div>
                     <div className="form-check mt-2">

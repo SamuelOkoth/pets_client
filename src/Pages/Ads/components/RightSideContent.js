@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 //Import Images
 import jobImages2 from "../../../assets/images/featured-job/img-02.png";
 
-const RightSideContent = ({pet}) => {
+const RightSideContent = ({pet,addToFavorites}) => {
   //Apply Now Model
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
@@ -66,7 +66,8 @@ const {t} =useTranslation();
                 Message Now  <i className="uil uil-arrow-right"></i>
               </Link>
               <Link
-                to="/favoriteads"
+                // to="/favoriteads"
+                onClick={addToFavorites}
                 className="btn btn-soft-warning btn-hover w-100 mt-2"
               >
                 <i className="uil uil-bookmark"></i> Add In Favorite List

@@ -62,7 +62,6 @@ const NavBar = (props) => {
    setLoading(true);
    try {
      const response = await dispatch(GetUserProfileAsync());
-     console.log(response)
      setProfileData(response)
    } catch (error) {
      toast.error(error?.response?.data?.error);
