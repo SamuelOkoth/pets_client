@@ -59,10 +59,9 @@ const AdDetails = () => {
           toast("Added to favorites successfully")
           window.location("/favoriteads")
         }
-        console.log(res);
       }
     } catch (error) {
-      
+      toast.error(error.message)
     }
   }
   return (

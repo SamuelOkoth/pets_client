@@ -27,6 +27,7 @@ const JobListing = () => {
     try {
       const response = await axiosClient.get(`/favourite_ads`).then((response) => response.data);
       setPetAdList(response);
+      console.log(response);
     } catch (error) {
       console.error(error.message)
     }
@@ -42,7 +43,7 @@ const JobListing = () => {
                 <Row className="align-items-center">
                   <Col md={2}>
                     <div className="text-center mb-4 mb-md-0">
-                      <Link to={"/ads/"+ petAdDetail.id}>
+                      <Link to={"/ads/"+ petAdDetail.ad_id}>
                         <img
                           src={petAdDetail.pet_img_url}
                           alt=""
@@ -57,11 +58,11 @@ const JobListing = () => {
                     <div className="mb-2 mb-md-0">
                       <h5 className="fs-18 mb-0">
                         <Link to="/AdDetails" className="text-dark">
-                          {petAdDetail.name}
+                          {petAdDetail.ad.name}
                         </Link>
                       </h5>
                       <p className="text-muted fs-14 mb-0">
-                        {petAdDetail.email}
+                        {petAdDetail.user.email}
                       </p>
                     </div>
                   </Col>
@@ -71,7 +72,7 @@ const JobListing = () => {
                       <div className="flex-shrink-0">
                         <i className="mdi mdi-map-marker text-primary me-1"></i>
                       </div>
-                      <p className="text-muted mb-0">{petAdDetail.country}</p>
+                      <p className="text-muted mb-0">{petAdDetail.ad.country}</p>
                     </div>
                   </Col>
 
@@ -81,7 +82,7 @@ const JobListing = () => {
                         {/* <i className="uil uil-clock-three text-primary me-1"></i> */}
                         <i className="uil uil-wallet text-primary me-1"></i>
                       </div>
-                      <p className="text-muted mb-0"> {petAdDetail.price}</p>
+                      <p className="text-muted mb-0"> {petAdDetail.ad.price}</p>
                     </div>
                   </Col>
                   <Col md={2} className="align-self-center">
@@ -93,13 +94,13 @@ const JobListing = () => {
                         title="View More"
                       >
                         <Link
-                          to="/jobdetails"
+                          to={"/ads/"+ petAdDetail.ad_id}
                           className="avatar-sm bg-success-subtle text-success d-inline-block text-center rounded-circle fs-18"
                         >
                           <i className="mdi mdi-eye"></i>
                         </Link>
                       </li>
-                      <li
+                      {/* <li
                         className="list-inline-item"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
@@ -112,7 +113,7 @@ const JobListing = () => {
                         >
                           <i className="uil uil-trash-alt"></i>
                         </Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </Col>
                 </Row>
