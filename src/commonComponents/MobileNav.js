@@ -217,13 +217,22 @@ const NavBar = (props) => {
               </NavItem>
               <NavItem>
                 {token ? (
-                  <Link onClick={handleSignOut} className="nav-link" to="/signin" >
+                  <Link
+                    onClick={handleSignOut}
+                    className="nav-link"
+                    to="/signin"
+                  >
                     {t("logout")}
                   </Link>
                 ) : (
-                  <Link to="/signin" className="nav-link">
-                    {t("sign in")}
-                  </Link>
+                  <>
+                    <Link to="/signup" className="nav-link">
+                      {t("signup_sign_up")}
+                    </Link>
+                    <Link to="/signin" className="nav-link">
+                      {t("signin_button")}
+                    </Link>
+                  </>
                 )}
               </NavItem>
             </ul>
@@ -325,9 +334,13 @@ const NavBar = (props) => {
                     </Link>
                   </li>
                   <li>
-                     <Link onClick={handleSignOut} className="dropdown-item" to="/signin" >
-                    {t("logout")}
-                  </Link>
+                    <Link
+                      onClick={handleSignOut}
+                      className="dropdown-item"
+                      to="/signin"
+                    >
+                      {t("logout")}
+                    </Link>
                   </li>
                 </DropdownMenu>
               </Dropdown>
