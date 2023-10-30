@@ -55,7 +55,7 @@ const PostForm = () => {
                 <Col lg={12}>
                   <div className="mb-4">
                     <Label htmlFor="petName" className="form-label">
-                      {t("pet_name_label")}
+                      {t("pet_name_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="text"
@@ -69,7 +69,7 @@ const PostForm = () => {
                 <Col lg={12}>
                   <div className="mb-4">
                     <Label htmlFor="petDescription" className="form-label">
-                      {t("pet_description_label")}
+                      {t("pet_description_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <textarea
                       className="form-control"
@@ -83,21 +83,23 @@ const PostForm = () => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="petGender" className="form-label">
-                      {t("pet_gender_label")}
+                      {t("pet_gender_label")} <span style={{color: "red"}}>*</span>
                     </Label>
-                    <Input
-                      type="text"
-                      className="form-control"
-                      id="petGender"
-                      placeholder={t("pet_gender_placeholder")}
+                    <select
+                      className="form-select"
+                      id="adType"
+                      aria-label="Default select example"
                       name="gender"
-                    />
+                    >
+                        <option value="male">{t("male")}</option>
+                        <option value="female">{t("female")}</option>
+                        </select>
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="petAge" className="form-label">
-                      {t("pet_age_label")}
+                      {t("pet_age_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="number"
@@ -111,7 +113,7 @@ const PostForm = () => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="email" className="form-label">
-                      {t("email_label")}
+                      {t("email_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="email"
@@ -125,7 +127,7 @@ const PostForm = () => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="phoneNumber" className="form-label">
-                      {t("phone_number_label")}
+                      {t("phone_number_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="number"
@@ -139,7 +141,7 @@ const PostForm = () => {
                 <Col lg={4}>
                   <div className="mb-4">
                     <Label htmlFor="petType" className="form-label">
-                      {t("pet_type_label")}
+                      {t("pet_type_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="text"
@@ -153,7 +155,7 @@ const PostForm = () => {
                 <Col lg={4}>
                   <div className="mb-4">
                     <Label htmlFor="adType" className="form-label">
-                      {t("ad_type_label")}
+                      {t("ad_type_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <select
                       className="form-select"
@@ -176,7 +178,7 @@ const PostForm = () => {
                 <Col lg={4}>
                   <div className="mb-4">
                     <Label htmlFor="petPrice" className="form-label">
-                      {t("pet_price_label")}
+                      {t("pet_price_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="number"
@@ -190,7 +192,7 @@ const PostForm = () => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="country" className="form-label">
-                      {t("country_label")}
+                      {t("country_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                    <select
                     className="form-select"
@@ -209,7 +211,7 @@ const PostForm = () => {
                 <Col lg={3}>
                   <div className="mb-4">
                     <Label htmlFor="city" className="form-label">
-                      {t("city_label")}
+                      {t("city_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="text"
@@ -223,7 +225,7 @@ const PostForm = () => {
                 <Col lg={3}>
                   <div className="mb-4">
                     <Label htmlFor="zipcode" className="form-label">
-                      {t("zipcode_label")}
+                      {t("zipcode_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="text"
@@ -237,7 +239,7 @@ const PostForm = () => {
                 <Col lg={12}>
                   <div className="mb-4">
                     <Label htmlFor="petImages" className="form-label">
-                      {t("pet_images_label")}
+                      {t("pet_images_label")} <span style={{color: "red"}}>*</span>
                     </Label>
                     <Input
                       type="file"
@@ -250,7 +252,7 @@ const PostForm = () => {
                 <Col lg={12}>
                   <div className="d-flex flex-wrap align-items-start gap-1 justify-content-end">
                     <Link to="/myprofile" className="btn btn-success">
-                      {t("back_button")}
+                      {t("back_button")} 
                     </Link>
                     <Link to="#" onClick={handleAdSCreate} className="btn btn-primary">
                       {t("submit_button")}{" "} <i className="mdi mdi-send"></i>

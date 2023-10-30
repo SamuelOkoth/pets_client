@@ -4,7 +4,10 @@
 "about":"About",
 "blog":"Blogs",
 "contact":"Contact us",
-"post_your_ad":"Post Your Ad",   
+"post_your_ad":"Post Your Ad", 
+ 
+"male": "Male",
+"female": "Female",
 
 "range":"Area Range",
 "miles": "Miles",
@@ -234,7 +237,7 @@
   "city_placeholder": "City",
   "zipcode_label": "Zipcode",
   "zipcode_placeholder": "Zipcode",
-  "pet_images_label": "Pet Images",
+  "pet_images_label": "Pet Image",
   "back_button": "Back",
   "submit_button": "Post Now",
    "ad_type_missing": "Missing",
