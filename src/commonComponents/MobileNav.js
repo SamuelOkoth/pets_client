@@ -221,8 +221,8 @@ const NavBar = (props) => {
                     {t("logout")}
                   </Link>
                 ) : (
-                  <Link to="/signup" className="nav-link">
-                    {t("signup_sign_up")}
+                  <Link to="/signin" className="nav-link">
+                    {t("sign in")}
                   </Link>
                 )}
               </NavItem>
