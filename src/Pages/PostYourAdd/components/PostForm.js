@@ -113,7 +113,7 @@ const PostForm = () => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="email" className="form-label">
-                      {t("email_label")} <span style={{color: "red"}}>*</span>
+                      {t("email_label")} 
                     </Label>
                     <Input
                       type="email"
@@ -127,7 +127,7 @@ const PostForm = () => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="phoneNumber" className="form-label">
-                      {t("phone_number_label")} <span style={{color: "red"}}>*</span>
+                      {t("phone_number_label")} 
                     </Label>
                     <Input
                       type="number"
