@@ -6,6 +6,7 @@ import { Col, Container, Row, Input, Label } from "reactstrap";
 
 import contactImage from "../../../assets/images/contact.png";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 const ContactContent = () => {
   const { t } = useTranslation();
   return (
@@ -100,22 +101,22 @@ const ContactContent = () => {
               </div>
               <div className="mt-4 pt-3">
              
-                <div className="d-flex text-muted align-items-center mt-2">
+                <Link  to="mailto:info@petshelpful.com" className="d-flex text-muted align-items-center mt-2">
                   <div className="flex-shrink-0 fs-22 text-primary">
                     <i className="uil uil-envelope"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
                     <p className="mb-0 email">info@petshelpful.com</p>
                   </div>
-                </div>
-                <div className="d-flex text-muted align-items-center mt-2">
+                </Link>
+                <Link to="tel:+966 56 322 8055" className="d-flex text-muted align-items-center mt-2">
                   <div className="flex-shrink-0 fs-22 text-primary">
                     <i className="uil uil-phone-alt"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
                     <p className="mb-0 phone ">+966 56 322 8055</p>
                   </div>
-                </div>
+                </Link>
               </div>
             </Col>
           </Row>

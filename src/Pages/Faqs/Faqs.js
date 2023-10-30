@@ -9,7 +9,7 @@ const Faqs = () => {
     <React.Fragment>
       
       <Section />
-      <Testimonial/>
+      {/* <Testimonial/> */}
       <FaqContent />
     </React.Fragment>
   );
