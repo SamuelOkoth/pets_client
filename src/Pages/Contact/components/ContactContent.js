@@ -18,11 +18,12 @@ const ContactContent = () => {
               <div className="section-title mt-4 mt-lg-0">
                 <h3 className="title">{t("get_in_touch")}</h3>
                
-                <Form
+                <form
                   method="post"
                   className="contact-form mt-4"
                   name="myForm"
                   id="myForm"
+                  action="https://formsubmit.co/info@petshelpful.com"
                 >
                   <span id="error-msg"></span>
                   <Row>
@@ -31,7 +32,7 @@ const ContactContent = () => {
                         <Label htmlFor="nameInput" className="form-label">
                           {t("form_name")}
                         </Label>
-                        <Input
+                        <input
                           type="text"
                           name="name"
                           id="name"
@@ -45,7 +46,7 @@ const ContactContent = () => {
                         <Label htmlFor="emailInput" className="form-label">
                          {t("form_email")}
                         </Label>
-                        <Input
+                        <input
                           type="email"
                           className="form-control"
                           id="emaiol"
@@ -59,7 +60,7 @@ const ContactContent = () => {
                         <Label htmlFor="subjectInput" className="form-label">
                           {t("form_subject")}
                         </Label>
-                        <Input
+                        <input
                           type="text"
                           className="form-control"
                           name="subject"
@@ -83,7 +84,7 @@ const ContactContent = () => {
                   </Row>
                   <div className="text-end">
                     <button
-                      type="button"
+                      type="submit"
                       id="submit"
                       name="submit"
                       className="btn btn-primary"
@@ -92,7 +93,7 @@ const ContactContent = () => {
                       {t("form_button")} <i className="uil uil-message ms-1"></i>
                     </button>
                   </div>
-                </Form>
+                </form>
               </div>
             </Col>
             <Col lg={5} className="ms-auto order-first order-lg-last">

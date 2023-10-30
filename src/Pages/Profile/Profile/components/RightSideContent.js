@@ -88,7 +88,7 @@ const RightSideContent = ({ profileData }) => {
                     <div className="text-center">
                       <div className="mb-4 profile-user">
                         <img
-                          src={profileData?.profile_image ? profileData.profile_image : userImage2}
+                          src={profileData?.profile_image ? profileData.profile_image : " "}
                           className="rounded-circle img-thumbnail profile-img"
                           id="profile-img"
                           alt=""
