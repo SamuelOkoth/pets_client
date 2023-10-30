@@ -4,7 +4,7 @@ import { Card, CardBody, Col } from "reactstrap";
 
 //Import images
 
-import profileImage from "../../../../assets/images/profile.jpg";
+import profileImage from "../../../../assets/images/avatar.jpg";
 import { useTranslation } from "react-i18next";
 
 const LeftSideContent = ({ profileData }) => {

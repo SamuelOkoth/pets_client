@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 //Images Import
-import userImage2 from "../../../../assets/images/user/img-02.jpg";
+import userImage2 from "../../../../assets/images/avatar.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -88,7 +88,7 @@ const RightSideContent = ({ profileData }) => {
                     <div className="text-center">
                       <div className="mb-4 profile-user">
                         <img
-                          src={profileData?.profile_image ? profileData.profile_image : " "}
+                          src={profileData?.profile_image ? profileData.profile_image : userImage2}
                           className="rounded-circle img-thumbnail profile-img"
                           id="profile-img"
                           alt=""
