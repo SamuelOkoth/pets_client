@@ -232,7 +232,7 @@ const NavBar = (props) => {
                   end
                 >
                   <li>
-                    <Link className="dropdown-item" to="/">
+                    <Link className="dropdown-item" to="/manageads">
                       {t("manage_ads")}
                     </Link>
                   </li>
