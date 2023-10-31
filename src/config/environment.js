@@ -1,3 +1,3 @@
-let apiEndpoint = `https://monkfish-app-5xbkg.ondigitalocean.app/`;
+let apiEndpoint = `https://api.petshelpful.com/`;
 
 export default apiEndpoint;

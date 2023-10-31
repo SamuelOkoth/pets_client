@@ -12,7 +12,7 @@ const Ad = ({deleteAd, ads}) => {
   return (
     <React.Fragment>
       <div>
-        {ads.length > 0 && ads.map((petAdDetail, key) => (
+        {ads && ads.length > 0 && ads.map((petAdDetail, key) => (
           <div
             key={key}
             className={
