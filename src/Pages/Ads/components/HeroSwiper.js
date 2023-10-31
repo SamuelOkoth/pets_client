@@ -35,6 +35,7 @@ const HeroSwiper = () => {
   SwiperCore.use([Autoplay, Pagination]);
   return (
     <React.Fragment>
+      <div className="custom-container container-fluid">
       <Swiper
         loop={true}
         slidesPerView={1}
@@ -60,6 +61,8 @@ const HeroSwiper = () => {
           ))}
         </div>
       </Swiper>
+      </div>
+      
     </React.Fragment>
   );
 };
