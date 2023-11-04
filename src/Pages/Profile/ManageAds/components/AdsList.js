@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, Col, Modal, ModalBody, Row } from "reactstrap";
-
+import {getMyAdsAsync, deleteAdsAsync} from '../../../../store/reducers/ads.reducer'
 import Pagination from "./Pagination";
 
 //Import Images
@@ -12,6 +13,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const JobListing = () => {
+  const dispatch = useDispatch()
   const [myPets, setMyPets] = useState([]);
   const [loading,setLoading] = useState(false)
   //Delete Modal
@@ -20,13 +22,13 @@ const JobListing = () => {
   const openModal = () => setModal(!modal);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    getMyPets()
-  }, []);
-
+  const fetchData = async () => {
+    const response = await dispatch(getMyAdsAsync());
+  };
   const getMyPets = async ()=>{
     try {
-      
+      const response = await dispatch(getMyAdsAsync());
+      setMyPets(response.data); // Assuming the response conta
     } catch (error) {
       toast.error(error.message)
     }finally{
@@ -51,7 +53,9 @@ const JobListing = () => {
       setLoading(false);
     }
   }
-
+  useEffect(()=>{
+    fetchData()
+  },[])
   return (
     <React.Fragment>
       <Row>

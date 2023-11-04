@@ -6,10 +6,6 @@ import Chat from "./Components/Chat";
 export default function Index() {
   return (
     <>
-      <br/>
-        <br/>
-        <br/>
-        <br/>
       <div className="home">
       
         <Container>
