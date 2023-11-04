@@ -201,7 +201,7 @@ const NavBar = (props) => {
               <Link className=" list-inline-item  me-4" to="/chat">
                 <div className="header-item noti-icon position-relative">
                   <i className="mdi mdi-message-processing fs-22"></i>
-                  <div className="count position-absolute">3</div>
+                  <div className="count position-absolute"></div>
                 </div>
               </Link>
             }

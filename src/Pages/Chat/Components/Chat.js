@@ -28,14 +28,13 @@ const Chat = () => {
 
   const messages = useSelector((state) => state.chats.messages).filter(
     (message) =>
-      (message.senderID == currentUserID &&
-        message.recipientID == partnerID) ||
+      (message.senderID == currentUserID && message.recipientID == partnerID) ||
       (message.senderID == partnerID && message.recipientID == currentUserID)
   );
 
   return (
     <>
-      {(
+      {
         <div className="chat">
           <div className="chatInfo">
             <span>{messages[0]?.senderName}</span>
@@ -43,7 +42,7 @@ const Chat = () => {
           <Messages messages={messages} />
           <Input />
         </div>
-      )}
+      }
     </>
   );
 };
