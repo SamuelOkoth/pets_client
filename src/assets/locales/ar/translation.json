@@ -227,6 +227,7 @@
   "pet_gender_label": "جنس الحيوان الأليف",
   "pet_gender_placeholder": "جنس الحيوان الأليف",
   "pet_age_label": "عمر الحيوان الأليف",
+  "select_pet_gender_placeholder": "حدد جنس الحيوان الأليف",
   "pet_age_placeholder": "عمر الحيوان الأليف",
   "email_label": "عنوان البريد الإلكتروني (اختياري)",
   "email_placeholder": "عنوان البريد الإلكتروني",
