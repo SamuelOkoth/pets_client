@@ -22,10 +22,10 @@ const AdsList = () => {
     // const response = await dispatch(deleteAdsAsync(id));
   };
 
-
   useEffect(()=>{
     fetchData()
   },[])
+  
   return (
     <React.Fragment>
       {/* <Section /> */}

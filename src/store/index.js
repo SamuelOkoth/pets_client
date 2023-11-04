@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import AuthSlice from "./slices/auth.slice";
 import AdsSlice from "./slices/ads.slice";
+import MessagesSlice from "./slices/messages.slice"
 
 const loadState = () => {
   try {
@@ -18,7 +19,8 @@ const peristedState = loadState();
 
 const rootReducer = combineReducers({
   auth: AuthSlice,
-  ads: AdsSlice
+  ads: AdsSlice,
+  chats:MessagesSlice
 });
 
 export const store = configureStore({
