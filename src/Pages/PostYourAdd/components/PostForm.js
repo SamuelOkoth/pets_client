@@ -189,6 +189,9 @@ useEffect(() => {
                       id="petGender"
                       name="gender"
                     >
+                      <option value="" disabled selected>
+                        {t("select_pet_gender_placeholder")}
+                      </option>
                       <option value="male">{t("male")}</option>
                       <option value="female">{t("female")}</option>
                     </select>
