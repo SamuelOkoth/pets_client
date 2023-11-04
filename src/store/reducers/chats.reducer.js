@@ -1,5 +1,5 @@
 import { postRequest, getRequest, deleteRequest } from "../../config/axiosConfig";
-import { createAd,createFavAd, getAd, deleteAd, searchAd,complexFilter, searchByType, searchByCountry } from "../slices/ads.slice";
+import { getConversations,getConversation, getMessages, sendMessage, deleteConversation } from "../slices/ads.slice";
 
 export function createAdsAsync(data) {
   return async (dispatch, _getState) => {

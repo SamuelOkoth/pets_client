@@ -20,7 +20,7 @@ const PostForm = () => {
  // Constants for Google Maps initialization
  const DEFAULT_LATITUDE = 0; // Set your initial latitude
  const DEFAULT_LONGITUDE = 0; // Set your initial longitude
-
+ const [userCountry, setUserCountry] = useState("Loading...");
  // code to handle the map
  useEffect(() => {
   const script = document.createElement("script");
@@ -32,16 +32,31 @@ const PostForm = () => {
     const map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: DEFAULT_LATITUDE, lng: DEFAULT_LONGITUDE }, // Set initial map center.
       zoom: 12, // Set initial zoom level.
+      disableDefaultUI: true,
+        // add back fullscreen, streetview, zoom
+        zoomControl: true,
+        streetViewControl: true,
+        fullscreenControl: true
     });
+    
+   // Create an overlay div to contain the search input
+  const input = document.createElement("input");
+  input.type = "text";
+  input.id = "locationInput";
+  input.placeholder = "Search for a location";
+  input.style.width = "200px";
+  input.style.height = "44px"; // Set the height to 44px
+  input.style.padding = "8px"; // Add padding for spacing
 
-    const input = document.createElement("input");
-    input.type = "text";
-    input.id = "locationInput";
-    input.placeholder = "Search for a location";
-    document.body.appendChild(input);
+  // Append the input to the map div with ID "map" at the TOP_LEFT position
+  const mapDiv = document.getElementById("map");
+  map.controls[window.google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    const searchBox = new window.google.maps.places.SearchBox(input);
-    map.controls[window.google.maps.ControlPosition.TOP_LEFT].push(input);
+  const searchBox = new window.google.maps.places.SearchBox(input);
+
+  // Move the input to be the first element at the TOP_LEFT position
+  const mapControls = map.controls[window.google.maps.ControlPosition.TOP_LEFT].getArray();
+  mapControls.unshift(mapControls.pop());
 
     map.addListener("bounds_changed", () => {
       searchBox.setBounds(map.getBounds());
@@ -84,6 +99,20 @@ const PostForm = () => {
       document.body.removeChild(input);
     }
   };
+}, []);
+
+
+useEffect(() => {
+  // Fetch user's IP address information
+  fetch("https://ipinfo.io?token=05eab31960567f")
+    .then(response => response.json())
+    .then(data => {
+      setUserCountry(data.country || "Unknown");
+    })
+    .catch(error => {
+      console.error("Error fetching IP address information:", error);
+      setUserCountry("Unknown");
+    });
 }, []);
 
   const handleAdSCreate = async (event) => {
@@ -171,13 +200,17 @@ const PostForm = () => {
                     <Label htmlFor="petGender" className="form-label">
                       {t("pet_gender_label")} <span style={{color: "red"}}>*</span>
                     </Label>
-                    <Input
-                      type="text"
-                      className="form-control"
+                    <select
+                      className="form-select"
                       id="petGender"
-                      placeholder={t("pet_gender_placeholder")}
                       name="gender"
-                    />
+                    >
+                      <option value="" disabled selected>
+                        {t("select_pet_gender_placeholder")}
+                      </option>
+                      <option value="male">{t("male")}</option>
+                      <option value="female">{t("female")}</option>
+                    </select>
                   </div>
                 </Col>
                 <Col lg={6}>
@@ -293,9 +326,9 @@ const PostForm = () => {
                   </div>
                 </Col>
                 <Col lg={12}>
-                <div id="map" style={{ height: "400px", width: "100%" }}></div>
-                <input type="hidden" name="latitude" value={latitude} />
-                <input type="hidden" name="longitude" value={longitude} />
+                    <div id="map" className="mb-4" style={{ height: "400px", width: "100%" }}></div>
+                    <input type="hidden" name="latitude" value={latitude} />
+                    <input type="hidden" name="longitude" value={longitude} />
                 </Col>
                 <Col lg={3}>
                   <div className="mb-4">
@@ -336,6 +369,7 @@ const PostForm = () => {
                       id="petImages"
                       name="pet_image"
                     />
+                    <input type="hidden" name="userCountry" id="userCountryInput" value={userCountry} />
                   </div>
                 </Col>
                 <Col lg={12}>
