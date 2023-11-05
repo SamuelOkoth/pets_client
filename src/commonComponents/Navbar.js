@@ -197,14 +197,14 @@ const NavBar = (props) => {
           </Collapse>
 
           <ul className="header-menu list-inline d-flex align-items-center mb-0">
-            {/* {token &&
+            {token &&
               <Link className=" list-inline-item  me-4" to="/chat">
                 <div className="header-item noti-icon position-relative">
                   <i className="mdi mdi-message-processing fs-22"></i>
-                  <div className="count position-absolute">3</div>
+                  <div className="count position-absolute"></div>
                 </div>
               </Link>
-            } */}
+            }
             <Dropdown
               onClick={() => setUserProfile(!userProfile)}
               isOpen={userProfile}

@@ -1,16 +1,13 @@
 import Message from "./Message";
 
-const Messages = () => {
+const Messages = ({ messages }) => {
   return (
     <div className="messages">
-      {/* {messages.map((m) => (
-        <Message message={m} key={m.id} />
-      ))} */}
-      <Message text="Hello" />
-      <Message text="Hello" />
-      <Message text="Hello" />
-      <Message text="Hello" />
-      <Message text="Hello" />
+      {!messages[0] ? (
+        <h5>No messages</h5>
+      ) : (
+        messages.map((message) => <Message message={message} />)
+      )}
     </div>
   );
 };

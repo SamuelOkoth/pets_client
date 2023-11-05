@@ -1,25 +1,14 @@
-const Message = (props) => {
+const Message = ({ message }) => {
+  const messageOwner = "123";
   return (
     <>
-      <div className=" message owner">
-        <div className="messageContent">
-          <p>Hello</p>
-        </div>
-        <div className="messageInfo">
-          <span>just now</span>
-        </div>
-      </div>
-
-      
-      <div className="message ">
-        <div className="messageContent">
-          <p>Hy</p>
-          
-        </div>
-  
-        <div className="messageInfo">
-          <span>just now</span>
-        </div>
+      <div
+        className={
+          (message.senderID == messageOwner ? " message owner" : "message ")
+        }
+      >
+        <div className="messageContent"><p>{message.message}</p></div>
+        <div className="messageInfo">{/* <span>just now</span> */}</div>
       </div>
     </>
   );
