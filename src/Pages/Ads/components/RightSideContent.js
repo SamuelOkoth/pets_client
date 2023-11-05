@@ -78,13 +78,12 @@ const {t} =useTranslation();
 
         <div className="mt-4">
           <h6 className="fs-16 mb-3">Ad Location</h6>
-            <iframe
+            {/* <iframe
                 width="100%"
                 height="200"
-                frameBorder="0"
                 style={{ border: 0 }}
                 src={`https://www.google.com/maps/embed/v1/view?key=AIzaSyBeBlcI_0OO_dK5bJKHSGKSfQUqDivb0Ro&center=${pet.latitude},${pet.longitude}&zoom=15`}
-            ></iframe>
+            ></iframe> */}
         </div>
         <div
           className="modal fade"
