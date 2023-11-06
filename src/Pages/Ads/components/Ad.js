@@ -12,6 +12,9 @@ const Ad = ({deleteAd, ads}) => {
   return (
     <React.Fragment>
       <div>
+        {
+          !ads[0] && <h5 style={{ border: "2px solid black", padding: "2rem", borderRadius: "5px" }}>No ads found!</h5>
+        }
         {ads && ads.length > 0 && ads.map((petAdDetail, key) => (
           <div
             key={key}

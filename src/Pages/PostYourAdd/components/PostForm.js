@@ -18,9 +18,41 @@ const PostForm = () => {
  const [latitude, setLatitude] = useState(null);
  const [longitude, setLongitude] = useState(null);
  // Constants for Google Maps initialization
- const DEFAULT_LATITUDE = 0; // Set your initial latitude
- const DEFAULT_LONGITUDE = 0; // Set your initial longitude
+ const [DEFAULT_LATITUDE, setDefaultLatitude] = useState(0);
+ const [DEFAULT_LONGITUDE, setDefaultLongitude] = useState(0);
  const [userCountry, setUserCountry] = useState("Loading...");
+ const [selectedCountry, setSelectedCountry] = useState(""); // State variable to hold the selected country
+
+ useEffect(() => {
+  // Fetch user's IP address information
+  fetch("https://ipinfo.io?token=05eab31960567f")
+    .then((response) => response.json())
+    .then((data) => {
+      const isoCountryCode = data.country || "Unknown";
+      // Fetch full country name based on ISO code
+      fetch(`https://restcountries.com/v3.1/alpha?codes=${isoCountryCode}`)
+        .then((response) => response.json())
+        .then((countryData) => {
+          if (countryData[0]) {
+            setUserCountry(data.country || "Unknown");
+            setSelectedCountry(countryData[0].name.common || "Unknown"); // Set the selected country
+            setDefaultLatitude(countryData[0].latlng[0]);
+            setDefaultLongitude(countryData[0].latlng[1]);
+          } else {
+            setUserCountry("Unknown");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching full country name:", error);
+          setUserCountry("Unknown");
+        });
+    })
+    .catch((error) => {
+      console.error("Error fetching IP address information:", error);
+      setUserCountry("Unknown");
+    });
+}, []);
+
  // code to handle the map
  useEffect(() => {
   const script = document.createElement("script");
@@ -102,18 +134,7 @@ const PostForm = () => {
 }, []);
 
 
-useEffect(() => {
-  // Fetch user's IP address information
-  fetch("https://ipinfo.io?token=05eab31960567f")
-    .then(response => response.json())
-    .then(data => {
-      setUserCountry(data.country || "Unknown");
-    })
-    .catch(error => {
-      console.error("Error fetching IP address information:", error);
-      setUserCountry("Unknown");
-    });
-}, []);
+
 
   const handleAdSCreate = async (event) => {
     event.preventDefault();
@@ -309,20 +330,20 @@ useEffect(() => {
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="country" className="form-label">
-                      {t("country_label")} <span style={{color: "red"}}>*</span>
+                      {t("country_label")} <span style={{ color: "red" }}>*</span>
                     </Label>
-                   <select
-                    className="form-select"
-                    id="country"
-                    aria-label="Default select example"
-                    name="country"
-                  >
-                    {countryOptions.map((option) => (
-                      <option key={option.value} value={option.label}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
+                    <select
+                      className="form-select"
+                      id="country"
+                      name="country"
+                      value={selectedCountry} // Set the selected value based on the state variable
+                    >
+                      {countryOptions.map((option) => (
+                        <option key={option.value} value={option.label}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </Col>
                 <Col lg={12}>

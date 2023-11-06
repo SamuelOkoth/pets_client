@@ -42,24 +42,27 @@ const adsSlice = createSlice({
       }
     },
     complexFilter: (state, action) => {
-      console.log(state.filteredAds);
-      state.filteredAds = state.filteredAds.filter((ad) => {
-        return (
-          ad.country
-            .toLowerCase()
-            .includes(action.payload.country.toLowerCase()) &&
-          ad.category
-            .toLowerCase()
-            .includes(action.payload.category.toLowerCase())
-        );
-      });
+      if (action.payload) {
+        state.filteredAds = state.filteredAds.filter((ad) => {
+          return (
+            ad.country
+              .toLowerCase()
+              .includes(action.payload.country.toLowerCase()) &&
+            ad.category
+              .toLowerCase()
+              .includes(action.payload.type.toLowerCase())
+          );
+        });
+      } else {
+        state.filteredAds = state.ads;
+      }
     },
     searchByCountry: (state, action) => {
       if (action.payload) {
-        state.filteredAds = state.ads.filter(
-          (ad) => ad.country.toLowerCase().includes(action.payload.toLowerCase())
+        state.filteredAds = state.ads.filter((ad) =>
+          ad.country.toLowerCase().includes(action.payload.toLowerCase())
         );
-      }else{
+      } else {
         state.filteredAds = state.ads;
       }
     },

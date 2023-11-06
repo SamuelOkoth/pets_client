@@ -48,7 +48,7 @@ const AdDetails = () => {
   const addToFavorites = async() => {
     try {
       if(userId && id){
-        const res = await fetch("https://monkfish-app-5xbkg.ondigitalocean.app/favourite_ads", {
+        const res = await fetch("https://www.petshelpful.com/favourite_ads", {
           method: 'POST', 
           headers: {
             'Content-Type': 'application/json',

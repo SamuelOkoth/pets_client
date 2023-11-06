@@ -69,8 +69,8 @@ function App() {
         <Route exact path="/resetpassword" element={<ProtectedRoute><ResetPassword /></ProtectedRoute>} />
         <Route exact path="/changepassword" element={<ProtectedRoute><NewPassword /></ProtectedRoute>} />
         <Route exact path="/postyourad" element={<PrivateRoute><PostAdd /></PrivateRoute>} />
-        <Route exact path="/chat" element={<Chat />} />
-        <Route exact path="/chat/:partnerID" element={<Chat />} />
+        <Route exact path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
+        <Route exact path="/chat/:partnerID" element={<PrivateRoute><Chat /></PrivateRoute>} />
       </Routes>
       {/* <Subscribe /> */} 
       <Footer />

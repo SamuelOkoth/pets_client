@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Input, Row } from "reactstrap";
@@ -6,29 +6,35 @@ import CountryOptions from "./CountryOptions";
 import Type from "./Type";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import {searchAds} from "../../../store/reducers/ads.reducer"
-
+import { complexSearch, searchAds } from "../../../store/reducers/ads.reducer";
 const Fliter = () => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
-  const [country,setCountry] = useState("")
-  const [type, setType] = useState("")
+  const [type, setType] = useState("");
+  const [country, setCountry] = useState("");
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(searchAds(searchValue))
-  },[searchValue])
-  
+  useEffect(() => {
+    dispatch(searchAds(searchValue));
+  }, [searchValue]);
+
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   };
 
+<<<<<<< HEAD
   const submit = (e)=> {
     e.preventDefault()
     // cons
     console.log(country, type)
   }
+=======
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(complexSearch(type.value, country.value))
+  };
+>>>>>>> a580b78745da414c632fa6ea0e763b6fac278e59
 
   return (
     <React.Fragment>
@@ -58,12 +64,16 @@ const Fliter = () => {
               <div className="filler-job-form">
                 {/* <i className="uil uil-clipboard-notes"></i> */}
                 <i className="uil uil-exchange"></i>
+<<<<<<< HEAD
                 <Type setType={setType}/>
+=======
+                <Type setType={setType} />
+>>>>>>> a580b78745da414c632fa6ea0e763b6fac278e59
               </div>
             </Col>
             <Col lg={3} md={6}>
               <button type="submit" className="btn btn-primary w-100">
-                <i className="uil uil-filter"></i>  {t('filter')}
+                <i className="uil uil-filter"></i> {t("filter")}
               </button>
             </Col>
           </Row>

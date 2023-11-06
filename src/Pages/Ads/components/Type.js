@@ -21,6 +21,9 @@ const Type = ({setType}) => {
     { label: t("squirrels"), value: t("squirrels") },
     { label: t("hamsters"), value: t("hamsters") }
   ];
+  const handleTypeChange = (selectedOption) => {
+    setType(selectedOption);
+  };
   const colourStyles = {
     control: (styles) => ({
       ...styles,
@@ -42,7 +45,7 @@ const Type = ({setType}) => {
         name="choices-single-categories"
         id="choices-single-categories"
         aria-label="Default select example"
-        onChange={(e)=>setType(e.target.value)}
+        onChange={handleTypeChange} 
       />
     </React.Fragment>
   );
