@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Input, Row } from "reactstrap";
@@ -6,24 +6,27 @@ import CountryOptions from "./CountryOptions";
 import Type from "./Type";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import {searchAds} from "../../../store/reducers/ads.reducer"
+import { complexSearch, searchAds } from "../../../store/reducers/ads.reducer";
 const Fliter = () => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
+  const [type, setType] = useState("");
+  const [country, setCountry] = useState("");
+
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(searchAds(searchValue))
-  },[searchValue])
-  
+  useEffect(() => {
+    dispatch(searchAds(searchValue));
+  }, [searchValue]);
+
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   };
 
-  const submit = (e)=> {
-    e.preventDefault()
-    // cons
-  }
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(complexSearch(type.value, country.value))
+  };
 
   return (
     <React.Fragment>
@@ -46,19 +49,19 @@ const Fliter = () => {
             <Col lg={3} md={6}>
               <div className="filler-job-form">
                 <i className="uil uil-location-point"></i>
-                <CountryOptions setSearchValue={setSearchValue} />
+                <CountryOptions setCountry={setCountry} />
               </div>
             </Col>
             <Col lg={3} md={6}>
               <div className="filler-job-form">
                 {/* <i className="uil uil-clipboard-notes"></i> */}
                 <i className="uil uil-exchange"></i>
-                <Type />
+                <Type setType={setType} />
               </div>
             </Col>
             <Col lg={3} md={6}>
               <button type="submit" className="btn btn-primary w-100">
-                <i className="uil uil-filter"></i>  {t('filter')}
+                <i className="uil uil-filter"></i> {t("filter")}
               </button>
             </Col>
           </Row>

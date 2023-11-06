@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { useTranslation } from "react-i18next";
-const Type = () => {
+const Type = ({setType}) => {
   const { t } = useTranslation();
 
   const options = [
@@ -21,6 +21,10 @@ const Type = () => {
     { label: t("squirrels"), value: t("squirrels") },
     { label: t("hamsters"), value: t("hamsters") }
   ];
+  const handleTypeChange = (selectedOption) => {
+    // Handle the change by updating the state with the selected option
+    setType(selectedOption);
+  };
   const colourStyles = {
     control: (styles) => ({
       ...styles,
@@ -42,6 +46,7 @@ const Type = () => {
         name="choices-single-categories"
         id="choices-single-categories"
         aria-label="Default select example"
+        onChange={handleTypeChange} 
       />
     </React.Fragment>
   );

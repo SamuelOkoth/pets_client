@@ -47,9 +47,9 @@ export function searchAds(searchString) {
     dispatch(searchAd(searchString));
   };
 }
-export function complexSearch({}) {
+export function complexSearch(type, country) {
   return (dispatch, _getState) => {
-    dispatch(complexFilter({}));
+    dispatch(complexFilter({type, country}));
   };
 }
 export function searchCountry(country) {
