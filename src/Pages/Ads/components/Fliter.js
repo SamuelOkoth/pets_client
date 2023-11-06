@@ -7,9 +7,13 @@ import Type from "./Type";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import {searchAds} from "../../../store/reducers/ads.reducer"
+
 const Fliter = () => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
+  const [country,setCountry] = useState("")
+  const [type, setType] = useState("")
+
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -23,6 +27,7 @@ const Fliter = () => {
   const submit = (e)=> {
     e.preventDefault()
     // cons
+    console.log(country, type)
   }
 
   return (
@@ -46,14 +51,14 @@ const Fliter = () => {
             <Col lg={3} md={6}>
               <div className="filler-job-form">
                 <i className="uil uil-location-point"></i>
-                <CountryOptions setSearchValue={setSearchValue} />
+                <CountryOptions setCountry={setCountry} />
               </div>
             </Col>
             <Col lg={3} md={6}>
               <div className="filler-job-form">
                 {/* <i className="uil uil-clipboard-notes"></i> */}
                 <i className="uil uil-exchange"></i>
-                <Type />
+                <Type setType={setType}/>
               </div>
             </Col>
             <Col lg={3} md={6}>

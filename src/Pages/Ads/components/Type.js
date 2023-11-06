@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { useTranslation } from "react-i18next";
-const Type = () => {
+const Type = ({setType}) => {
   const { t } = useTranslation();
 
   const options = [
@@ -42,6 +42,7 @@ const Type = () => {
         name="choices-single-categories"
         id="choices-single-categories"
         aria-label="Default select example"
+        onChange={(e)=>setType(e.target.value)}
       />
     </React.Fragment>
   );

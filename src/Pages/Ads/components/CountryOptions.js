@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-const CountryOptions = ({setSearchValue}) => {
+const CountryOptions = ({setCountry}) => {
   const options = [
     { value: "0", label: "Afghanistan" },
     { value: "1", label: "land Islands" },
@@ -268,6 +268,7 @@ const CountryOptions = ({setSearchValue}) => {
         className="choices selectForm__inner "
         defaultValue={{ label: "Afghanistan", value: 0 }}
         styles={colourStyles}
+        onChange={(e)=>setCountry(e.target.value)}
       />
     </React.Fragment>
   );
