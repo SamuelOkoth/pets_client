@@ -23,18 +23,10 @@ const Fliter = () => {
     setSearchValue(event.target.value);
   };
 
-<<<<<<< HEAD
-  const submit = (e)=> {
-    e.preventDefault()
-    // cons
-    console.log(country, type)
-  }
-=======
   const submit = (e) => {
     e.preventDefault();
     dispatch(complexSearch(type.value, country.value))
   };
->>>>>>> a580b78745da414c632fa6ea0e763b6fac278e59
 
   return (
     <React.Fragment>
