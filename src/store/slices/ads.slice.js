@@ -43,7 +43,6 @@ const adsSlice = createSlice({
     },
     complexFilter: (state, action) => {
       if (action.payload) {
-        console.log(state.filteredAds);
         state.filteredAds = state.filteredAds.filter((ad) => {
           return (
             ad.country
