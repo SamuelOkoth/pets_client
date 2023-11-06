@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-<<<<<<< HEAD
-const CountryOptions = ({setCountry}) => {
-=======
 const CountryOptions = ({ setCountry }) => {
   const [selectedCountry, setSelectedCountry] = useState(null); // Use null initially to indicate no selection
 
@@ -46,7 +43,6 @@ const CountryOptions = ({ setCountry }) => {
       });
   }, []);
 
->>>>>>> a580b78745da414c632fa6ea0e763b6fac278e59
   const options = [
     { value: "Afghanistan", label: "Afghanistan" },
     { value: "land Islands", label: "land Islands" },

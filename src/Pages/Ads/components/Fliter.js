@@ -56,11 +56,7 @@ const Fliter = () => {
               <div className="filler-job-form">
                 {/* <i className="uil uil-clipboard-notes"></i> */}
                 <i className="uil uil-exchange"></i>
-<<<<<<< HEAD
-                <Type setType={setType}/>
-=======
                 <Type setType={setType} />
->>>>>>> a580b78745da414c632fa6ea0e763b6fac278e59
               </div>
             </Col>
             <Col lg={3} md={6}>
