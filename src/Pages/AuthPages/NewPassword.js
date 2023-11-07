@@ -96,7 +96,7 @@ const NewPassword = () => {
                             <div className="text-center mb-4">
                               <h5>Reset Password</h5>
                               <p className="text-white-50">
-                                Reset your password with Jobcy.
+                                Reset your password with Pets HelpFul.
                               </p>
                             </div>
                             <Form
