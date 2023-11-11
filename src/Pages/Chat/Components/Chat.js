@@ -48,7 +48,7 @@ const Chat = () => {
     <>
       <div className="chat">
         <div className="chatInfo">
-         {messages && messages.subject ? `Request for Ad ${messages.subject}` : 'Loading...'}
+         {messages && messages.subject ? `Request for Ad ${messages.subject}` : 'Select Conversation'}
         </div>
         {messages && messages.messages && (
           <Messages messages={messages.messages} />
