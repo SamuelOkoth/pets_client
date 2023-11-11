@@ -26,7 +26,7 @@ const Chats = () => {
 
   return (
     <div className="chats p-4">
-      {conversations.map((conversation, index) => (
+      {conversations && conversations.map((conversation, index) => (
         <div key={index} className="userChat">
           <img src={conversation.profile_image} alt="user image" />
           <Link to={`/chat/${conversation.id}`} className="userChatInfo">
