@@ -208,7 +208,7 @@
       flex: 2;
 
       .chatInfo {
-        height: 50px;
+        height: calc(100% - 50px);
         background-color: #fff;
         display: flex;
         align-items: center;

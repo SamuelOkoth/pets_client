@@ -1,14 +1,80 @@
 
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef  } from "react";
 import { Link } from "react-router-dom";
-import { Col, Label, Row, Modal, ModalBody } from "reactstrap";
-import { useSelector } from "react-redux";
+import { Col, Label, Row, Modal, ModalBody, Input } from "reactstrap";
+import { useSelector, useDispatch  } from "react-redux";
 import timeAgo from "../../../utils/timeAgo";
-
+import { GetUserProfileAsync } from "../../../../src/store/reducers/auth.reducer";
+import { sendMessageAsync } from "../../../../src/store/reducers/messages.reducer";
+import { toast } from "react-toastify";
 const Ad = ({deleteAd, ads}) => {
+  const [adIdInModal, setAdIdInModal] = useState(null);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth?.token);
   const [modal, setModal] = useState(false);
-  const openModal = () => setModal(!modal);
+  const formRef = useRef(null);
+  // const openModal = () => setModal(!modal);
+
+  const [profileData, setProfileData] = useState({});
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (token) {
+      getProfileDat()
+    }
+ }, []);
+
+ const getProfileDat = async (event) => {
+   setLoading(true);
+   try {
+     const response = await dispatch(GetUserProfileAsync());
+     setProfileData(response)
+   } catch (error) {
+     toast.error(error?.response?.data?.error);
+   } finally {
+     setLoading(false);
+   }
+ }
+
+
+ const openModal = (adID) => {
+  setAdIdInModal(adID); // Set the adID when the modal is opened
+  setModal(true);
+};
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const modalForm = document.getElementById("modalForm");
+
+  if (modalForm) {
+    const formData = new FormData(modalForm);
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value;
+    });
+
+    setLoading(true);
+
+    try {
+      const sendData = {
+        chat: formDataObject,
+      };
+
+      await dispatch(sendMessageAsync(sendData));
+      toast.success("Message sent successfully");
+      setModal(false);
+      // Additional logic if needed
+    } catch (error) {
+      console.error("Error sending message:", error);
+      // Handle errors if needed
+    } finally {
+      setLoading(false);
+    }
+  }
+};
+
+
   return (
     <React.Fragment>
       <div>
@@ -58,7 +124,7 @@ const Ad = ({deleteAd, ads}) => {
                       </Link>
                     </h5>
                     <p className="text-muted fs-14 mb-0">
-                      {petAdDetail.email}
+                      {/* {petAdDetail.email} */}
                     </p>
                   </div>
                 </Col>
@@ -114,7 +180,7 @@ const Ad = ({deleteAd, ads}) => {
                   <div>
                     <Link
                       to="#sendMessage"
-                      onClick={openModal}
+                      onClick={() => openModal(petAdDetail.id)}
                       className="primary-link"
                     >
                       Message <i className="mdi mdi-chevron-double-right"></i>
@@ -133,7 +199,7 @@ const Ad = ({deleteAd, ads}) => {
           aria-hidden="true"
         >
           <div className="modal-dialog modal-dialog-centered">
-            <Modal isOpen={modal} toggle={openModal} centered>
+            <Modal isOpen={modal} toggle={() => setModal(!modal)} centered>
               <ModalBody className="modal-body p-5">
                 <div className="text-center mb-4">
                   <h5 className="modal-title" id="staticBackdropLabel">
@@ -141,30 +207,34 @@ const Ad = ({deleteAd, ads}) => {
                   </h5>
                 </div>
                 <div className="position-absolute end-0 top-0 p-3">
-                  <button
-                    type="button"
-                    onClick={openModal}
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                <button
+                  type="button"
+                  onClick={() => setModal(!modal)}
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
                 </div>
-              
-                <div className="mb-3">
-                  <Label for="messageControlTextarea" className="form-label">
-                    Message
-                  </Label>
-                  <textarea
-                    className="form-control"
-                    id="messageControlTextarea"
-                    rows="4"
-                    placeholder="Enter your message"
-                  ></textarea>
-                </div>
-               
-                <button type="submit" className="btn btn-primary w-100">
-                  Send Message
-                </button>
+                <form id="modalForm">
+                  <div className="mb-3">
+                    <Label for="messageControlTextarea" className="form-label">
+                      Message
+                    </Label>
+                    <textarea
+                      className="form-control"
+                      id="messageControlTextarea"
+                      rows="4"
+                      name="body"
+                      placeholder="Enter your message"
+                    ></textarea>
+                  </div>
+                  <Input type="hidden" name="adId" value={adIdInModal} />
+                  <Input type="hidden" name="senderId" value={profileData.id} />
+                
+                  <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit}>
+                    Send Message
+                  </button>
+                </form>
               </ModalBody>
             </Modal>
           </div>

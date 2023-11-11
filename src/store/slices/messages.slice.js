@@ -1,3 +1,4 @@
+// messages.slice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -19,9 +20,14 @@ const messagesSlice = createSlice({
     getMyMessages: (state, action) => {
       state.messages = action.payload;
     },
+    getMyMessage: (state, action) => {
+      state.messages = action.payload;
+    },
   },
 });
-export const { sendMessage, deleteMessage, getMyMessages } =
+
+export const { sendMessage, deleteMessage, getMyMessages, getMyMessage } =
   messagesSlice.actions;
+
 const MessagesSlice = messagesSlice.reducer;
 export default MessagesSlice;

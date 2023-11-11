@@ -1,4 +1,4 @@
-let apiEndpoint = `https://api.petshelpful.com/`;
-// let apiEndpoint = `http://localhost:4000`;
+// let apiEndpoint = `https://api.petshelpful.com/`;
+let apiEndpoint = `http://lvh.me:3000/`;
 
 export default apiEndpoint;
