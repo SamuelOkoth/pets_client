@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Messages from "./Messages";
 import Input from "./Input";
 import { GetUserProfileAsync } from "../../../store/reducers/auth.reducer";
 import { GetMyMessageAsync } from "../../../store/reducers/messages.reducer";
@@ -42,15 +43,15 @@ const Chat = () => {
   
     fetchData(); // Call the async function
   }, [conversationID, dispatch]);
-  
+  console.log(messages)
 
   return (
     <>
       <div className="chat">
         <div className="chatInfo">
-          {/* Additional chat info can be displayed here */}
+          Request for Ad {messages.subject}
         </div>
-        {/* <Messages messages={messages} /> */}
+          <Messages messages={messages.messages} />
         <Input />
       </div>
     </>

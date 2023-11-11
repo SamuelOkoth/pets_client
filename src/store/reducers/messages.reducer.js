@@ -41,7 +41,8 @@ export function GetMyMessageAsync(id) {
   return async (dispatch, _getState) => {
     try {
       const res = await getRequest(`api/v1/conversations/${id}`);
-      dispatch(getMyMessage(res));
+      dispatch(getMyMessage(res || []));
+      return res || [];
     } catch (error) {
       // Handle error if needed
       console.error("Error fetching conversation:", error);

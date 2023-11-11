@@ -23,7 +23,7 @@ const Chats = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(conversations)
+
   return (
     <div className="chats p-4">
       {conversations.map((conversation, index) => (

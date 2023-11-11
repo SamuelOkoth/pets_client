@@ -1,3 +1,4 @@
+
 const Message = ({ message }) => {
   const messageOwner = "123";
   return (
@@ -7,7 +8,7 @@ const Message = ({ message }) => {
           (message.senderID == messageOwner ? " message owner" : "message ")
         }
       >
-        <div className="messageContent"><p>{message.message}</p></div>
+        <div className="messageContent"><p>{message.body}</p></div>
         <div className="messageInfo">{/* <span>just now</span> */}</div>
       </div>
     </>
