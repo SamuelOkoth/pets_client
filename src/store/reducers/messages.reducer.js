@@ -17,10 +17,16 @@ export function sendMessageAsync(data) {
   };
 }
 
-export function GetMyMessagesAsync(data) {
+export function GetMyMessagesAsync() {
   return async (dispatch, _getState) => {
-    const res = await getRequest("api/v1/conversations");
-    dispatch(getMyMessages(res));
+    try {
+      const res = await getRequest("api/v1/conversations");
+      dispatch(getMyMessages(res || []));
+      return res || [];
+    } catch (error) {
+      console.error("Error fetching conversations:", error);
+      throw error;
+    }
   };
 }
 
@@ -35,12 +41,10 @@ export function GetMyMessageAsync(id) {
   return async (dispatch, _getState) => {
     try {
       const res = await getRequest(`api/v1/conversations/${id}`);
-      dispatch(getMyMessage(res));  // Assuming `getMyMessage` is your action creator
-      return res.messages || [];  // Return messages array directly
+      dispatch(getMyMessage(res));
     } catch (error) {
       // Handle error if needed
       console.error("Error fetching conversation:", error);
-      throw error;  // Rethrow the error to be caught in the component
     }
   };
 }

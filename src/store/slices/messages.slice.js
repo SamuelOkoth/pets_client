@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   messages: [],
+  conversations: [], // Make sure this is initialized as an array
 };
 
 const messagesSlice = createSlice({
@@ -18,7 +19,7 @@ const messagesSlice = createSlice({
       );
     },
     getMyMessages: (state, action) => {
-      state.messages = action.payload;
+      state.conversations = action.payload;
     },
     getMyMessage: (state, action) => {
       state.messages = action.payload;

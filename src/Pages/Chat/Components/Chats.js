@@ -8,11 +8,12 @@ import { useTranslation } from "react-i18next";
 
 const Chats = () => {
   const dispatch = useDispatch();
-  const conversations = useSelector((state) => state.chats.messages);
+  const conversations = useSelector((state) => state.chats.conversations);
+
 
   const fetchData = async () => {
     try {
-      await dispatch(GetMyMessagesAsync());
+       await dispatch(GetMyMessagesAsync());
     } catch (error) {
       console.error("Error fetching messages:", error);
       toast.error("Error fetching messages");
@@ -22,20 +23,19 @@ const Chats = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(conversations);
+  console.log(conversations)
   return (
     <div className="chats p-4">
-      {conversations && conversations.map((conversation, index) => (
-          <div key={index} className="userChat">
-            <img src={conversation.profile_image} alt="user image" />
-            <Link to={`/chat/${conversation.id}`} className="userChatInfo">
-              <span>{conversation.recipient_first_name}</span>
-              <p>{conversation.last_message.body}</p>
-            </Link>
-          </div>
-        ))
-      }
-      {!conversations || !conversations.length && <p>No Messages</p>}
+      {conversations.map((conversation, index) => (
+        <div key={index} className="userChat">
+          <img src={conversation.profile_image} alt="user image" />
+          <Link to={`/chat/${conversation.id}`} className="userChatInfo">
+            <span>{conversation.recipient_first_name}</span>
+            <p>{conversation.last_message.body}</p>
+          </Link>
+        </div>
+      ))}
+      {!conversations.length && <p>No Messages</p>}
     </div>
   );
 };

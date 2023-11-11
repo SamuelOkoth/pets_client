@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "./Input";
 import { GetUserProfileAsync } from "../../../store/reducers/auth.reducer";
-import { GetMyMessagesAsync, GetMyMessageAsync } from "../../../store/reducers/messages.reducer";
+import { GetMyMessageAsync } from "../../../store/reducers/messages.reducer";
 
 const Chat = () => {
   const [currentUserID, setcurrentUserID] = useState("");
