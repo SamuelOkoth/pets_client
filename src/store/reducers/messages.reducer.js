@@ -13,7 +13,8 @@ import {
 export function sendMessageAsync(data) {
   return async (dispatch, _getState) => {
     const res = await postRequest("api/v1/conversations", data);
-    dispatch(sendMessage(res?.message));
+    dispatch(sendMessage(res || []));
+    return res || [];
   };
 }
 
