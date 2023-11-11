@@ -14,12 +14,11 @@ const Input = ({conversation}) => {
   const sendMessage = async (e) => {
     try {
       e.preventDefault();
-      const response = await dispatch(sendMessageAsync({ text, img, conversation }));
-    // Add a 1-second delay using setTimeout
-    setTimeout(() => {
-      // Reload the page after the delay
-      window.location.reload();
-    }, 1000);
+      dispatch(sendMessageAsync({ text, img, conversation }));
+      setTimeout(() => {
+        // Reload the page after the delay
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       toast.error(error?.response?.data?.error);
     }
