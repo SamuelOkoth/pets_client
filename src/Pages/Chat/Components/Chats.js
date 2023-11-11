@@ -35,7 +35,6 @@ const Chats = () => {
           </Link>
         </div>
       ))}
-      {!conversations.length && <p>No Messages</p>}
     </div>
   );
 };
