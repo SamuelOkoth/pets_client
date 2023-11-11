@@ -15,7 +15,7 @@ const Input = ({conversation}) => {
     try {
       e.preventDefault();
       dispatch(sendMessageAsync({ text, img, conversation }));
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       toast.error(error?.response?.data?.error);
     }
