@@ -43,15 +43,16 @@ const Chat = () => {
   
     fetchData(); // Call the async function
   }, [conversationID, dispatch]);
-  console.log(messages)
 
   return (
     <>
       <div className="chat">
         <div className="chatInfo">
-          Request for Ad {messages.subject}
+         {messages && messages.subject ? `Request for Ad ${messages.subject}` : 'Loading...'}
         </div>
+        {messages && messages.messages && (
           <Messages messages={messages.messages} />
+        )}
         <Input />
       </div>
     </>
