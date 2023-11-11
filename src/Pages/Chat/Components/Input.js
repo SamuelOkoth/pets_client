@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { sendMessageAsync } from "../../../store/reducers/messages.reducer";
 
-const Input = () => {
+const Input = ({conversation}) => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
@@ -14,12 +14,13 @@ const Input = () => {
   const sendMessage = async (e) => {
     try {
       e.preventDefault();
-      dispatch(sendMessageAsync({ text, img }));
+      dispatch(sendMessageAsync({ text, img, conversation }));
+      window.location.reload();
     } catch (error) {
       toast.error(error?.response?.data?.error);
     }
   };
-
+  
   return (
     <form className="input" onSubmit={sendMessage}>
       <input
@@ -27,17 +28,10 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        name="body"
       />
+      <input type="hidden" name="conversation" value={conversation} />
       <div className="send">
-        <input
-          type="file"
-          style={{ display: "none" }}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        />
-        <label htmlFor="file">
-          <img src={Img} alt="" />
-        </label>
         <button>Send</button>
       </div>
     </form>

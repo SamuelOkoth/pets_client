@@ -53,7 +53,7 @@ const Chat = () => {
         {messages && messages.messages && (
           <Messages messages={messages.messages} />
         )}
-        <Input />
+        {messages && messages.id && <Input conversation={messages.id} />}
       </div>
     </>
   );
