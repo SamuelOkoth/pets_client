@@ -14,8 +14,17 @@ const Input = ({conversation}) => {
   const sendMessage = async (e) => {
     try {
       e.preventDefault();
-      dispatch(sendMessageAsync({ text, img, conversation }));
-      // window.location.reload();
+      const response = await dispatch(sendMessageAsync({ text, img, conversation }));
+
+        if (response && response.success === "sent successful") {
+          // Reload the page only if the response indicates success
+          window.location.reload();
+        } else {
+          // Handle other cases if needed
+          console.error("Error sending message:", response);
+          // Optionally show an error message
+          toast.error("Error sending message");
+        }
     } catch (error) {
       toast.error(error?.response?.data?.error);
     }
