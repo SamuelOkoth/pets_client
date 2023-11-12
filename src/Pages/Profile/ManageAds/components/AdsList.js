@@ -135,12 +135,12 @@ const JobListing = () => {
                         data-bs-placement="top"
                         title="Edit"
                       >
-                        <Link
+                        {/* <Link
                           to="/bookmarkjobpost"
                           className="avatar-sm bg-success-subtle text-success d-inline-block text-center rounded-circle fs-18"
                         >
                           <i className="uil uil-edit"></i>
-                        </Link>
+                        </Link> */}
                       </li>
                       <li
                         className="list-inline-item"
