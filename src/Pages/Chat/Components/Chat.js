@@ -17,6 +17,7 @@ const Chat = () => {
     try {
       const response = await dispatch(GetUserProfileAsync());
       setcurrentUserID(response.id);
+      
     } catch (error) {
       // Handle error
       console.error("Error fetching user profile:", error);
@@ -43,7 +44,7 @@ const Chat = () => {
   
     fetchData(); // Call the async function
   }, [conversationID, dispatch]);
-
+  
   return (
     <>
       <div className="chat">
@@ -51,7 +52,7 @@ const Chat = () => {
          {messages && messages.subject ? `Request for Ad ${messages.subject}` : 'Select Conversation'}
         </div>
         {messages && messages.messages && (
-          <Messages messages={messages.messages} />
+          <Messages messages={messages.messages} currentUserID={currentUserID} />
         )}
         {messages && messages.id && <Input conversation={messages.id} />}
       </div>

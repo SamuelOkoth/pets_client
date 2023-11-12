@@ -1,11 +1,11 @@
 
-const Message = ({ message }) => {
-  const messageOwner = "123";
+const Message = ({ message, currentUserID }) => {
+
   return (
     <>
       <div
         className={
-          (message.senderID == messageOwner ? " message owner" : "message ")
+          (message.user_id == currentUserID ? " message owner" : "message ")
         }
       >
         <div className="messageContent"><p>{message.body}</p></div>
