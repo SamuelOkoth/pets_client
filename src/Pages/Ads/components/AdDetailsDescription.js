@@ -10,9 +10,12 @@ const JobDetailsDescription = ({ pet }) => {
   return (
     <React.Fragment>
       <Card className="job-detail overflow-hidden">
-        <div >
-          {/* <AdSwiper /> */}
-          <img className="pet-detail-img" src={pet.pet_image_url} />
+        <div class="pet-image-header" >
+        <img
+          src={pet.pet_image_url}
+                        alt=""
+                        className="img-fluid rounded-3"
+                        />
         </div>
         <CardBody className="p-4">
           <div>

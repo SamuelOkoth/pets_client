@@ -38,9 +38,9 @@ const AdDetails = () => {
  }
   const getAdsDetails = async ()=>{
     try{
-      const response = await (`api/v1/ads/${id}}`).then((response) => response.data);
-      setAdDetails(response)
-      console.log(response)
+      const response = await axiosClient.get(`api/v1/pets/${id}`);
+      setAdDetails(response.data.ad);
+      console.log(response.data.ad);
     }catch(error){
       console.error(error.message)
     }
