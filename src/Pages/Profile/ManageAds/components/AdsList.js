@@ -18,7 +18,7 @@ const JobListing = () => {
   const [loading,setLoading] = useState(false)
   //Delete Modal
   const [modal, setModal] = useState(false);
-
+  const [deleteItemId, setDeleteItemId] = useState(null);
   const openModal = () => setModal(!modal);
   const { t } = useTranslation();
 
@@ -41,7 +41,6 @@ const JobListing = () => {
   const getMyPets = async ()=>{
     try {
       const response = await getRequest("api/v1/myads");
-      console.log(response);
       setMyPets(response); // Assuming the response conta
     } catch (error) {
       toast.error(error.message)
@@ -58,15 +57,21 @@ const JobListing = () => {
       setLoading(false);
     }
   }
-  const deleteMyPets = async (id)=>{
+  const deleteMyPets = async (id) => {
     try {
-      
+      // Perform the delete action using the id
+      await dispatch(deleteAdsAsync(id));
+      // Fetch the updated data after deleting the item
+      await getMyPets();
+      // Close the modal
+      setModal(false);
     } catch (error) {
-      toast.error(error.message)
-    }finally{
+      toast.error(error.message);
+    } finally {
       setLoading(false);
     }
-  }
+  };
+
   useEffect(()=>{
     fetchData()
   },[])
@@ -74,7 +79,7 @@ const JobListing = () => {
     <React.Fragment>
       <Row>
         <Col lg={12}>
-          {myPets.map((petAdDetail, key) => (
+          {myPets && myPets.map((petAdDetail, key) => (
             <Card className="job-box card mt-4" key={key}>
               <CardBody className="p-4">
                 <Row className="align-items-center">
@@ -143,11 +148,13 @@ const JobListing = () => {
                         data-bs-placement="top"
                         title="Delete"
                       >
-                        <Link
-                          onClick={openModal}
-                          to="#"
-                          className="avatar-sm bg-danger-subtle text-danger d-inline-block text-center rounded-circle fs-18"
-                        >
+                        <Link onClick={() => {
+                                setDeleteItemId(petAdDetail.id);
+                                openModal();
+                              }}
+                              to="#"
+                              className="avatar-sm bg-danger-subtle text-danger d-inline-block text-center rounded-circle fs-18"
+                            >
                           <i className="uil uil-trash-alt"></i>
                         </Link>
                       </li>
@@ -199,9 +206,18 @@ const JobListing = () => {
               >
                 {t("cancel")}
               </button>
-              <button type="button" className="btn btn-danger btn-sm">
-                {t("yes_delete")}
-              </button>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                deleteMyPets(deleteItemId);
+                openModal();
+              }}>
+                <button
+                  type="submit"
+                  className="btn btn-danger btn-sm"
+                >
+                  {t("yes_delete")}
+                </button>
+              </form>
             </div>
           </Modal>
         </div>
