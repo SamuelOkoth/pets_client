@@ -55,7 +55,10 @@ const handleSubmit = async (event) => {
     });
 
     setLoading(true);
-
+    setTimeout(() => {
+      // Reload the page after the delay
+      setModal(false);
+    }, 1000);
     try {
       const sendData = {
         chat: formDataObject,
