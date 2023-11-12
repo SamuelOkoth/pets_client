@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, Col, Modal, ModalBody, Row } from "reactstrap";
 import {getMyAdsAsync, deleteAdsAsync} from '../../../../store/reducers/ads.reducer'
 import Pagination from "./Pagination";
-
+import { postRequest, getRequest, deleteRequest } from "../../../../config/axiosConfig";
 //Import Images
 
 import adImage1 from "../../../../assets/images/pet-ad.jpg";
@@ -23,12 +23,26 @@ const JobListing = () => {
   const { t } = useTranslation();
 
   const fetchData = async () => {
-    const response = await dispatch(getMyAdsAsync());
+    try {
+      // Dispatch the action and await the result
+      await dispatch(getMyAdsAsync());
+      // Fetch the updated data after dispatching the action
+      await getMyPets();
+    } catch (error) {
+      console.error("Error fetching ads:", error);
+      toast.error("Error fetching ads");
+    }
   };
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const getMyPets = async ()=>{
     try {
-      const response = await dispatch(getMyAdsAsync());
-      setMyPets(response.data); // Assuming the response conta
+      const response = await getRequest("api/v1/myads");
+      console.log(response);
+      setMyPets(response); // Assuming the response conta
     } catch (error) {
       toast.error(error.message)
     }finally{
@@ -66,9 +80,9 @@ const JobListing = () => {
                 <Row className="align-items-center">
                   <Col md={2}>
                     <div className="text-center mb-4 mb-md-0">
-                      <Link to="/AdDetails">
+                      <Link to={`/ads/${petAdDetail.id}`}>
                         <img
-                          src={petAdDetail.petImg}
+                          src={petAdDetail.pet_image_url}
                           alt=""
                           className="img-fluid rounded-3"
                           style={{ height: "95px" }}
@@ -80,8 +94,8 @@ const JobListing = () => {
                   <Col md={3}>
                     <div className="mb-2 mb-md-0">
                       <h5 className="fs-18 mb-0">
-                        <Link to="/AdDetails" className="text-dark">
-                          {petAdDetail.petName}
+                        <Link to={`/ads/${petAdDetail.id}`} className="text-dark">
+                          {petAdDetail.name}
                         </Link>
                       </h5>
                       <p className="text-muted fs-14 mb-0">
@@ -95,7 +109,7 @@ const JobListing = () => {
                       <div className="flex-shrink-0">
                         <i className="mdi mdi-map-marker text-primary me-1"></i>
                       </div>
-                      <p className="text-muted mb-0">{petAdDetail.location}</p>
+                      <p className="text-muted mb-0">{petAdDetail.country}</p>
                     </div>
                   </Col>
 
@@ -105,7 +119,7 @@ const JobListing = () => {
                         {/* <i className="uil uil-clock-three text-primary me-1"></i> */}
                         <i className="uil uil-wallet text-primary me-1"></i>
                       </div>
-                      <p className="text-muted mb-0"> {petAdDetail.petPrice}</p>
+                      <p className="text-muted mb-0"> {petAdDetail.price}</p>
                     </div>
                   </Col>
                   <Col md={2} className="align-self-center">
