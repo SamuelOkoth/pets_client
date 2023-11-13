@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 
+// Import Swiper styles
 //swiper css
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 
-//Import Hero images
+// Import Hero images
 import heroImage1 from "../../../assets/images/home/hero-image-1.jpg";
 import heroImage2 from "../../../assets/images/home/hero-image-2.jpg";
 import heroImage3 from "../../../assets/images/home/hero-image-3.jpg";
 import heroImage4 from "../../../assets/images/home/hero-image-4.jpg";
 
-const HeroSwiper = () => {
+const HeroSwiper = ({ isArabic }) => {
   const heroSwiper = [
     {
       id: 1,
@@ -33,36 +34,37 @@ const HeroSwiper = () => {
   ];
 
   SwiperCore.use([Autoplay, Pagination]);
+
+  useEffect(() => {
+    const swiper = new SwiperCore(".swiper-main", {
+      loop: true,
+      slidesPerView: 1,
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      autoHeight: true,
+      pagination: { clickable: true },
+    });
+
+    // Change language direction dynamically
+    swiper.changeDirection(isArabic ? "rtl" : "ltr");
+  }, [isArabic]);
+
   return (
     <React.Fragment>
       <div className="custom-container container-fluid">
-      <Swiper
-        loop={true}
-        slidesPerView={1}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        autoHeight={true}
-        pagination={{ clickable: true }}
-       
-          className="swiper-main"
-      >
-        <div
-          className="swiper-wrapper"
-         
-        >
-          {(heroSwiper || []).map((heroSwiperDetails, key) => (
-            <SwiperSlide key={key}>
-              <img
-                src={heroSwiperDetails.heroImage}
-                alt=""
-                className=" swiper-img"
-               
-              />
-            </SwiperSlide>
-          ))}
-        </div>
-      </Swiper>
+        <Swiper className="swiper-main">
+          <div className="swiper-wrapper">
+            {heroSwiper.map((heroSwiperDetails, key) => (
+              <SwiperSlide key={key}>
+                <img
+                  src={heroSwiperDetails.heroImage}
+                  alt=""
+                  className=" swiper-img"
+                />
+              </SwiperSlide>
+            ))}
+          </div>
+        </Swiper>
       </div>
-      
     </React.Fragment>
   );
 };

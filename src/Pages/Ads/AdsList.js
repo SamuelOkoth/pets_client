@@ -9,10 +9,12 @@ import Ad from "./components/Ad";
 import Pagination from "./components/Pagination";
 import HeroSwiper from "./components/HeroSwiper"
 import {getAdsAsync, deleteAdsAsync} from '../../store/reducers/ads.reducer'
+import { useTranslation } from "react-i18next";
 
 const AdsList = () => {
   document.title = "Ads List | Petshelpful";
   const dispatch = useDispatch()
+  const { i18n } = useTranslation();
   const ads = useSelector(state => state.ads.filteredAds);
 
   const fetchData = async () => {
@@ -26,10 +28,18 @@ const AdsList = () => {
     fetchData()
   },[])
   
+
+  
+
+  // Function to check if the selected language is Arabic
+  const isArabic = () => {
+    return i18n.language === "ar";
+  };
+
   return (
     <React.Fragment>
       {/* <Section /> */}
-      <HeroSwiper/>
+      <HeroSwiper isArabic={isArabic()}  />
       <section className="section">
         <Container>
           <Row>
