@@ -1,107 +1,121 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row, Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-
-import blogImage4 from "../../../assets/images/blog/img-04.jpg";
-import blogImage5 from "../../../assets/images/blog/img-05.jpg";
-import blogImage6 from "../../../assets/images/blog/img-06.jpg";
-import blogImage7 from "../../../assets/images/blog/img-07.jpg";
-import blogImage8 from "../../../assets/images/blog/img-08.jpg";
-import blogImage9 from "../../../assets/images/blog/img-09.jpg";
-
 import { useTranslation } from "react-i18next";
 
 const BlogCard = () => {
-  const {t}= useTranslation();
-  const blogText = [
-    {
-      id: 1,
-      blogImage: blogImage4,
-      blogAuther: "Alice Mellor",
-      blogDate: "Aug 08, 2021",
-      blogCount: 432,
-      blogTitle: "Smartest Applications for Business",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    },
-    {
-      id: 2,
-      blogImage: blogImage5,
-      blogAuther: "Kiera Finch",
-      blogDate: "July 23, 2021",
-      blogCount: 247,
-      blogTitle: "How To Increase Trade Show Traffic",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    },
-    {
-      id: 3,
-      blogImage: blogImage6,
-      blogAuther: "Toby Lees",
-      blogDate: "July 11, 2021",
-      blogCount: 188,
-      blogTitle: "How apps is changing the IT world",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    },
-    {
-      id: 4,
-      blogImage: blogImage7,
-      blogAuther: "Dominic Potter",
-      blogDate: "June 19, 2021",
-      blogCount: 475,
-      blogTitle: "Design your apps in your own way.",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    },
-    {
-      id: 5,
-      blogImage: blogImage8,
-      blogAuther: "Leon Davey",
-      blogDate: "June 04, 2021",
-      blogCount: 310,
-      blogTitle: "How to get creative in your work",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    },
-    {
-      id: 6,
-      blogImage: blogImage9,
-      blogAuther: "Harvey Bird",
-      blogDate: "Feb 28, 2021",
-      blogCount: 158,
-      blogTitle: "What planning process needs ?",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    }
-  ];
-  const blogVideo = [
-    {
-      id: 1,
-      blogLink: "https://www.youtube.com/embed/1y_kfWUCFDQ",
-      blogAuther: "Harvey Bird",
-      blogDate: "Feb 21, 2021",
-      blogCount: 110,
-      blogTitle: "How to become a best sale marketer in a year!",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    },
-    {
-      id: 2,
-      blogLink: "https://www.youtube.com/embed/1y_kfWUCFDQ",
-      blogAuther: "Harvey Bird",
-      blogDate: "Feb 09, 2021",
-      blogCount: 244,
-      blogTitle: "A day in the of a professional fashion designer",
-      blogContent:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-    }
-  ];
+  const { t } = useTranslation();
+  const [blogData, setBlogData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/v1/post");
+        if (response.ok) {
+          const data = await response.json();
+          setBlogData(data);
+        } else {
+          console.error("Failed to fetch blog data");
+        }
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(blogData);
+
+  // const blogText = [
+  //   {
+  //     id: 1,
+  //     blogImage: blogImage4,
+  //     blogAuther: "Alice Mellor",
+  //     blogDate: "Aug 08, 2021",
+  //     blogCount: 432,
+  //     blogTitle: "Smartest Applications for Business",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   },
+  //   {
+  //     id: 2,
+  //     blogImage: blogImage5,
+  //     blogAuther: "Kiera Finch",
+  //     blogDate: "July 23, 2021",
+  //     blogCount: 247,
+  //     blogTitle: "How To Increase Trade Show Traffic",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   },
+  //   {
+  //     id: 3,
+  //     blogImage: blogImage6,
+  //     blogAuther: "Toby Lees",
+  //     blogDate: "July 11, 2021",
+  //     blogCount: 188,
+  //     blogTitle: "How apps is changing the IT world",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   },
+  //   {
+  //     id: 4,
+  //     blogImage: blogImage7,
+  //     blogAuther: "Dominic Potter",
+  //     blogDate: "June 19, 2021",
+  //     blogCount: 475,
+  //     blogTitle: "Design your apps in your own way.",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   },
+  //   {
+  //     id: 5,
+  //     blogImage: blogImage8,
+  //     blogAuther: "Leon Davey",
+  //     blogDate: "June 04, 2021",
+  //     blogCount: 310,
+  //     blogTitle: "How to get creative in your work",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   },
+  //   {
+  //     id: 6,
+  //     blogImage: blogImage9,
+  //     blogAuther: "Harvey Bird",
+  //     blogDate: "Feb 28, 2021",
+  //     blogCount: 158,
+  //     blogTitle: "What planning process needs ?",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   }
+  // ];
+  // const blogVideo = [
+  //   {
+  //     id: 1,
+  //     blogLink: "https://www.youtube.com/embed/1y_kfWUCFDQ",
+  //     blogAuther: "Harvey Bird",
+  //     blogDate: "Feb 21, 2021",
+  //     blogCount: 110,
+  //     blogTitle: "How to become a best sale marketer in a year!",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   },
+  //   {
+  //     id: 2,
+  //     blogLink: "https://www.youtube.com/embed/1y_kfWUCFDQ",
+  //     blogAuther: "Harvey Bird",
+  //     blogDate: "Feb 09, 2021",
+  //     blogCount: 244,
+  //     blogTitle: "A day in the of a professional fashion designer",
+  //     blogContent:
+  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
+  //   }
+  // ];
 
   return (
     <React.Fragment>
       <Row>
-        {blogText.map((blogTextDetails, key) => (
+        {/* {blogText.map((blogTextDetails, key) => (
           <Col lg={6} className="mb-4" key={key}>
             <Card className="blog-grid-box p-2">
               <img
@@ -180,7 +194,7 @@ const BlogCard = () => {
               </CardBody>
             </Card>
           </Col>
-        ))}
+        ))} */}
       </Row>
     </React.Fragment>
   );
