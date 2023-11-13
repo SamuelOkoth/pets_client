@@ -1,11 +1,6 @@
-import React, { useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Pagination } from "swiper";
-
-// Import Swiper styles
-//swiper css
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+import React, { useEffect, useRef } from "react";
+import Flickity from "flickity";
+import "flickity/css/flickity.css";
 
 // Import Hero images
 import heroImage1 from "../../../assets/images/home/hero-image-1.jpg";
@@ -33,37 +28,42 @@ const HeroSwiper = ({ isArabic }) => {
     },
   ];
 
-  SwiperCore.use([Autoplay, Pagination]);
+  const flickityRef = useRef(null);
 
   useEffect(() => {
-    const swiper = new SwiperCore(".swiper-main", {
-      loop: true,
-      slidesPerView: 1,
-      autoplay: { delay: 3000, disableOnInteraction: false },
-      autoHeight: true,
-      pagination: { clickable: true },
+    // Initialize Flickity when the component mounts
+    flickityRef.current = new Flickity(".carousel", {
+      wrapAround: true,
+      autoPlay: 3000,
+      adaptiveHeight: true
+
+      // Other Flickity options...
     });
 
     // Change language direction dynamically
-    swiper.changeDirection(isArabic ? "rtl" : "ltr");
+    flickityRef.current.direction = isArabic ? "rtl" : "ltr";
+
+    return () => {
+      // Destroy Flickity when the component unmounts
+      if (flickityRef.current) {
+        flickityRef.current.destroy();
+      }
+    };
   }, [isArabic]);
 
   return (
     <React.Fragment>
       <div className="custom-container container-fluid">
-        <Swiper className="swiper-main">
-          <div className="swiper-wrapper">
-            {heroSwiper.map((heroSwiperDetails, key) => (
-              <SwiperSlide key={key}>
-                <img
-                  src={heroSwiperDetails.heroImage}
-                  alt=""
-                  className=" swiper-img"
-                />
-              </SwiperSlide>
-            ))}
-          </div>
-        </Swiper>
+        <div className="carousel">
+          {heroSwiper.map((heroSwiperDetails, key) => (
+              <img
+                src={heroSwiperDetails.heroImage}
+                alt=""
+                className="scarousel-cell"
+              />
+           
+          ))}
+        </div>
       </div>
     </React.Fragment>
   );
