@@ -1,5 +1,4 @@
-
-
+import { useTranslation } from "react-i18next";
 import React, { useEffect, useState, useRef  } from "react";
 import { Link } from "react-router-dom";
 import { Col, Label, Row, Modal, ModalBody, Input } from "reactstrap";
@@ -12,12 +11,22 @@ const Ad = ({deleteAd, ads}) => {
   const [adIdInModal, setAdIdInModal] = useState(null);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth?.token);
+  const { t } = useTranslation();
   const [modal, setModal] = useState(false);
   const formRef = useRef(null);
   // const openModal = () => setModal(!modal);
 
   const [profileData, setProfileData] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const translations = {
+      secondsAgo: count => t("seconds ago", { count }),
+      minutesAgo: count => t("minutes ago", { count }),
+      hoursAgo: count => t("hours ago", { count }),
+      yesterday: t("yesterday"),
+      daysAgo: count => t("days ago", { count }),
+  };
+
   useEffect(() => {
     if (token) {
       getProfileDat()
@@ -139,6 +148,7 @@ const handleSubmit = async (event) => {
                     </div>
                     <p className="text-muted mb-0">
                       {petAdDetail.country}
+                      
                     </p>
                   </div>
                 </Col>
@@ -150,7 +160,7 @@ const handleSubmit = async (event) => {
                     </div>
                     <p className="text-muted mb-0">
                       {" "}
-                      {timeAgo(petAdDetail.updated_at)}
+                      {timeAgo(petAdDetail.updated_at, translations)}
                     </p>
                   </div>
                 </Col>
@@ -174,7 +184,7 @@ const handleSubmit = async (event) => {
                 <Col md={4}>
                   <div>
                     <p className="text-muted mb-0">
-                      <span className="text-dark">Age :</span>
+                      <span className="text-dark">{t("Age")} :</span>
                       {petAdDetail.age}
                     </p>
                   </div>
@@ -186,7 +196,7 @@ const handleSubmit = async (event) => {
                       onClick={() => openModal(petAdDetail.id)}
                       className="primary-link"
                     >
-                      Message <i className="mdi mdi-chevron-double-right"></i>
+                      {t("Message")} <i className="mdi mdi-chevron-double-right"></i>
                     </Link>
                   </div>
                 </Col>
@@ -206,7 +216,7 @@ const handleSubmit = async (event) => {
               <ModalBody className="modal-body p-5">
                 <div className="text-center mb-4">
                   <h5 className="modal-title" id="staticBackdropLabel">
-                    Fast Message
+                    {t("Fast Message")}
                   </h5>
                 </div>
                 <div className="position-absolute end-0 top-0 p-3">
@@ -221,21 +231,21 @@ const handleSubmit = async (event) => {
                 <form id="modalForm">
                   <div className="mb-3">
                     <Label for="messageControlTextarea" className="form-label">
-                      Message
+                    {t("Message")}
                     </Label>
                     <textarea
                       className="form-control"
                       id="messageControlTextarea"
                       rows="4"
                       name="body"
-                      placeholder="Enter your message"
+                      placeholder={t('form_plac_message')}
                     ></textarea>
                   </div>
                   <Input type="hidden" name="adId" value={adIdInModal} />
                   <Input type="hidden" name="senderId" value={profileData.id} />
                 
                   <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit}>
-                    Send Message
+                    {t("Send Message")}
                   </button>
                 </form>
               </ModalBody>

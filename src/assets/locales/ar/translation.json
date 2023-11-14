@@ -509,5 +509,13 @@
 "Yemen": "اليمن",
 "Zambia": "زامبيا",
 "Zimbabwe": "زيمبابوي"
-}
+},
+"Message": "رسالة",
+"Fast Message": "رسالة سريعة",
+"Send Message": "إرسال رسالة",
+"days ago": "قبل أيام",
+"seconds ago": "قبل ثوانٍ",
+"minutes ago": "قبل دقائق",
+"hours ago": "قبل ساعات",
+"Yesterday": "أمس"
 }

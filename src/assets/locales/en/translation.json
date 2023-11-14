@@ -501,5 +501,13 @@
 "Yemen": "Yemen",
 "Zambia": "Zambia",
 "Zimbabwe": "Zimbabwe"
-}
+},
+"Message": "Message",
+"Fast Message": "Fast Message",
+"Send Message": "Send Message",
+"days ago": "days ago",
+"seconds ago": "seconds ago",
+"minutes ago": "minutes ago",
+"hours ago": "hours ago",
+"Yesterday": "Yesterday"
 }
