@@ -10,9 +10,11 @@ const BlogCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/v1/post");
+        const response = await fetch("/api/v1/posts");
+        
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setBlogData(data);
         } else {
           console.error("Failed to fetch blog data");
@@ -25,7 +27,6 @@ const BlogCard = () => {
     fetchData();
   }, []);
 
-  console.log(blogData);
 
   // const blogText = [
   //   {

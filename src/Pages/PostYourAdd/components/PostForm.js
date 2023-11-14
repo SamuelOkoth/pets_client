@@ -336,11 +336,12 @@ const PostForm = () => {
                       className="form-select"
                       id="country"
                       name="country"
-                      value={selectedCountry} // Set the selected value based on the state variable
+                      value={selectedCountry}
+                      onChange={(e) => setSelectedCountry(e.target.value)} // Update the selected country on change
                     >
                       {countryOptions.map((option) => (
                         <option key={option.value} value={option.label}>
-                          {option.label}
+                          {t(`countries.${option.label}`)}
                         </option>
                       ))}
                     </select>
