@@ -24,7 +24,6 @@ const BlogGrid = () => {
             <Col lg={4} md={5}>
               <div className="sidebar ms-lg-4 ps-lg-4 mt-5 mt-lg-0">
                 <BlogCategory />
-                <Tags />
                 {/*<SocialConnect />*/}
               </div>
             </Col>

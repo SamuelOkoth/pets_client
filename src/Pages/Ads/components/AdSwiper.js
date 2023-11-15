@@ -1,59 +1,59 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Pagination } from "swiper";
+import React, { useEffect, useRef } from "react";
+import Flickity from "flickity";
+import "flickity/css/flickity.css";
 
-//swiper css
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+const AdSwiper = ({ pet, isArabic }) => {
+  const flickityRef = useRef(null);
+  console.log(pet)
+  useEffect(() => {
+    // Initialize Flickity when the component mounts
+    flickityRef.current = new Flickity(".carousel-pet", {
+      wrapAround: true,
+      autoPlay: 3000,
+      // adaptiveHeight: true,
+      // Other Flickity options...
+    });
 
-//Import Blog images
-import AdImage1 from "../../../assets/images/ads/ad-image-1.jpg";
-import AdImage2 from "../../../assets/images/ads/ad-image-2.jpg";
-import AdImage3 from "../../../assets/images/ads/ad-image-3.jpg";
+    // Change language direction dynamically
+    flickityRef.current.direction = isArabic ? "rtl" : "ltr";
 
-const AdSwiper = () => {
-  const adSwiper = [
-    {
-      id: 1,
-      AdImage: AdImage1
-    },
-    {
-      id: 2,
-      AdImage: AdImage2
-    },
-    {
-      id: 3,
-      AdImage: AdImage3
-    }
-  ];
+    return () => {
+      // Destroy Flickity when the component unmounts
+      if (flickityRef.current) {
+        flickityRef.current.destroy();
+      }
+    };
+  }, [isArabic]);
 
-  SwiperCore.use([Autoplay, Pagination]);
   return (
     <React.Fragment>
-      <Swiper
-        loop={true}
-        slidesPerView={1}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        autoHeight={true}
-        pagination={{ clickable: true }}
-      >
-        <div className="swiper-wrapper">
-          {(adSwiper || []).map((adSwiperDetails, key) => (
-            <SwiperSlide key={key}>
-              <img
-                src={adSwiperDetails.AdImage}
-                alt=""
-                className="img-fluid rounded-3"
-                style={{
-                    height:"500px",
-                    width:"100%",
-                    objectFit:"cover"
-                }}
-              />
-            </SwiperSlide>
-          ))}
+      <div className="custom-container container-fluid">
+        <div className="carousel-pet">
+        {pet.pet_image_url && (
+          <div className="carousel-cell">
+            <img
+              src={pet.pet_image_url}
+              alt="Main Pet Image"
+              className="pet-slider"
+            />
+          </div>
+        )}
+
+        {pet.additional_images && pet.additional_images.length > 0 && (
+          <>
+            {pet.additional_images.map((imageUrl, key) => (
+              <div key={key} className="carousel-cell">
+                <img
+                  src={imageUrl}
+                  alt={`Image ${key}`}
+                  className="pet-slider"
+                />
+              </div>
+            ))}
+          </>
+        )}
         </div>
-      </Swiper>
+      </div>
     </React.Fragment>
   );
 };

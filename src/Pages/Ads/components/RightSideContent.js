@@ -10,20 +10,20 @@ const RightSideContent = ({pet,addToFavorites}) => {
   //Apply Now Model
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
-const {t} =useTranslation();
+  const {t} =useTranslation();
   return (
     <React.Fragment>
       <div className="side-bar ms-lg-4">
         <Card className="job-overview">
           <CardBody className="p-4">
-            <h6 className="fs-17">Ad Overview</h6>
+            <h6 className="fs-17">{t('Ad Overview')}</h6>
             <ul className="list-unstyled mt-4 mb-0">
               <li>
                 <div className="d-flex mt-4">
                   <i className="uil uil-star-half-alt icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-2">Age</h6>
-                    <p className="text-muted mb-0">{pet.age} Years</p>
+                    <h6 className="fs-14 mb-2">{t('Age')}</h6>
+                    <p className="text-muted mb-0">{pet.age} {t('Years')}</p>
                   </div>
                 </div>
               </li>
@@ -31,8 +31,8 @@ const {t} =useTranslation();
                 <div className="d-flex mt-4">
                   <i className="uil uil-location-point icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-2">{t('location')}</h6>
-                    <p className="text-muted mb-0"> {pet.country}</p>
+                    <h6 className="fs-14 mb-2">{t('Location')}</h6>
+                    <p className="text-muted mb-0"> {t(`countries.${pet.country}`)}</p>
                   </div>
                 </div>
               </li>
@@ -40,7 +40,7 @@ const {t} =useTranslation();
                 <div className="d-flex mt-4">
                   <i className="uil uil-usd-circle icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-2">Offered Price</h6>
+                    <h6 className="fs-14 mb-2">{t('Offered Price')}</h6>
                     <p className="text-muted mb-0">{pet.price}</p>
                   </div>
                 </div>
@@ -63,21 +63,21 @@ const {t} =useTranslation();
                 onClick={openModal}
                 className="btn btn-primary btn-hover w-100 mt-2"
               >
-                Message Now  <i className="uil uil-arrow-right"></i>
+                {t('Message Now')}  <i className="uil uil-arrow-right"></i>
               </Link>
               <Link
                 // to="/favoriteads"
                 onClick={addToFavorites}
                 className="btn btn-soft-warning btn-hover w-100 mt-2"
               >
-                <i className="uil uil-bookmark"></i> Add In Favorite List
+                <i className="uil uil-bookmark"></i> {t('Add To Favourites')}
               </Link>
             </div>
           </CardBody>
         </Card>
       { pet.latitude && pet.longitude &&  (
         <div className="mt-4">
-          <h6 className="fs-16 mb-3">Ad Location</h6>
+          <h6 className="fs-16 mb-3">{t('Ad Location')}</h6>
             <iframe
                 width="100%"
                 height="200"
@@ -98,7 +98,7 @@ const {t} =useTranslation();
               <ModalBody className="modal-body p-5">
                 <div className="text-center mb-4">
                   <h5 className="modal-title" id="staticBackdropLabel">
-                    Fast Message
+                  {t('Fast Message')}
                   </h5>
                 </div>
                 <div className="position-absolute end-0 top-0 p-3">
@@ -113,7 +113,7 @@ const {t} =useTranslation();
               
                 <div className="mb-3">
                   <Label for="messageControlTextarea" className="form-label">
-                    Message
+                  {t('Message')}
                   </Label>
                   <textarea
                     className="form-control"
@@ -124,7 +124,7 @@ const {t} =useTranslation();
                 </div>
                
                 <button type="submit" className="btn btn-primary w-100">
-                  Send Message
+                {t('Send Message')}
                 </button>
               </ModalBody>
             </Modal>

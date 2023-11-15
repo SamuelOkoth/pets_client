@@ -66,7 +66,7 @@ const AdDetails = () => {
   }
   return (
     <React.Fragment>
-      <Section />
+      <Section pet={adDetails} />
       <section className="section">
         <Container>
           <Row>

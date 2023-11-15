@@ -40,7 +40,7 @@ const Fliter = () => {
                   type="search"
                   className="form-control filter-input-box"
                   id="exampleFormControlInput1"
-                  placeholder="Search for ads .. "
+                  placeholder={t('Search For Ads')}
                   style={{ marginTop: "-10px" }}
                   onChange={handleInputChange}
                 />

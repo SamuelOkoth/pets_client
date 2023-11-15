@@ -136,43 +136,53 @@ const PostForm = () => {
 
 
 
-  const handleAdSCreate = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(formRef.current);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
-    });
+const handleAdSCreate = async (event) => {
+  event.preventDefault();
+  const formData = new FormData(formRef.current);
+  const formDataObject = {};
+  formData.forEach((value, key) => {
+    formDataObject[key] = value;
+  });
 
-    setLoading(true);
-    try {
-      const sendData = {
-        ad:formDataObject
-      }
-      await dispatch(createAdsAsync(sendData));
-      toast.success("Ad created successfully");
-      // navigate("/signin");
-    } catch (error) {
-      function displayErrorToasts(errors) {
-        errors.forEach((error, index) => {
-          toast.error(error, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000, // Adjust as needed
-            closeButton: true,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            progress: undefined,
-            toastId: index,
-          });
-        });
-      }
-      console.log("Error On Ad Form:", error?.response?.data?.error);
-      displayErrorToasts(error?.response?.data?.error);
-    } finally {
-      setLoading(false);
-    }
+  // Handling multiple images for the "gallery_images" key
+  const imageInputs = document.getElementById("additional_images");
+  const imageFiles = imageInputs.files;
+ 
+  for (let i = 0; i < imageFiles.length; i++) {
+    // Append each image to the images array
+    formDataObject['images[]'] = formDataObject['images[]'] || [];
+    formDataObject['images[]'].push(imageFiles[i]);
   }
+
+  setLoading(true);
+  try {
+    const sendData = {
+      ad: formDataObject,
+    };
+    await dispatch(createAdsAsync(sendData));
+    toast.success("Ad created successfully");
+    // navigate("/signin");
+  } catch (error) {
+    function displayErrorToasts(errors) {
+      errors.forEach((error, index) => {
+        toast.error(error, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000, // Adjust as needed
+          closeButton: true,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          progress: undefined,
+          toastId: index,
+        });
+      });
+    }
+    console.log("Error On Ad Form:", error?.response?.data?.error);
+    displayErrorToasts(error?.response?.data?.error);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
    <React.Fragment>
       <section className="section">
@@ -392,6 +402,20 @@ const PostForm = () => {
                       name="pet_image"
                     />
                     <input type="hidden" name="userCountry" id="userCountryInput" value={userCountry} />
+                  </div>
+                </Col>
+                <Col lg={12}>
+                  <div className="mb-4">
+                    <Label htmlFor="additional_images" className="form-label">
+                      {t("Additional images")}
+                    </Label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="additional_images"
+                      multiple
+                      accept="image/*"
+                    />
                   </div>
                 </Col>
                 <Col lg={12}>

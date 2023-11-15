@@ -98,7 +98,7 @@ const { t } = useTranslation();
                 <li className="list-inline-item py-2 me-2 align-middle">
                   <Link to="/signin" onClick={handleSignOut} className="text-dark fw-medium fs-13">
                     <i className="uil uil-lock"></i>
-                    Sign Out
+                    {t("Sign Out")}
                   </Link>
                 </li>
                 :
