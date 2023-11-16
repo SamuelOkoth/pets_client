@@ -173,7 +173,6 @@ const CountryOptions = ({ setCountry }) => {
   { value: "Iraq", label: t("countries.Iraq") },
   { value: "Ireland", label: t("countries.Ireland") },
   { value: "Isle of Man", label: t("countries.Isle of Man") },
-  { value: "Israel", label: t("countries.Israel") },
   { value: "Italy", label: t("countries.Italy") },
   { value: "Jamaica", label: t("countries.Jamaica") },
   { value: "Japan", label: t("countries.Japan") },

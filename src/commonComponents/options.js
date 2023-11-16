@@ -105,7 +105,6 @@ export const countryOptions = [
   { value: "1.3", label: "Iraq" },
   { value: "1.4", label: "Ireland" },
   { value: "1.5", label: "Isle of Man" },
-  { value: "1.6", label: "Israel" },
   { value: "1.7", label: "Italy" },
   { value: "1.8", label: "Jamaica" },
   { value: "1.9", label: "Japan" },
