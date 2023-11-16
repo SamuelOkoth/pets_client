@@ -400,6 +400,7 @@ const handleAdSCreate = async (event) => {
                       className="form-control"
                       id="petImages"
                       name="pet_image"
+                      accept="image/*"
                     />
                     <input type="hidden" name="userCountry" id="userCountryInput" value={userCountry} />
                   </div>
