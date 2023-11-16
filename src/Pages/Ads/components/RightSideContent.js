@@ -38,6 +38,15 @@ const RightSideContent = ({pet,addToFavorites}) => {
               </li>
               <li>
                 <div className="d-flex mt-4">
+                  <i className="uil uil-phone-volume icon bg-primary-subtle text-primary"></i>
+                  <div className="ms-3">
+                    <h6 className="fs-14 mb-2">{t('Phone Number')}</h6>
+                    <p className="text-muted mb-0"> {pet.phone_number}</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="d-flex mt-4">
                   <i className="uil uil-usd-circle icon bg-primary-subtle text-primary"></i>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">{t('Offered Price')}</h6>
