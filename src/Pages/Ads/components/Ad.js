@@ -156,7 +156,13 @@ const handleSubmit = async (event) => {
                     </div>
                     <p className="text-muted mb-0">
                       {" "}
-                      {timeAgo(petAdDetail.updated_at, language)}
+                      {petAdDetail?.updated_at && (
+                        <>
+                          {/* Display time ago */}
+                          {timeAgo(petAdDetail.updated_at, language)}
+                        </>
+                      )}
+                      
                     </p>
                   </div>
                 </Col>

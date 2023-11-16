@@ -10,6 +10,8 @@ const AdSwiper = ({ pet, isArabic }) => {
     flickityRef.current = new Flickity(".carousel-pet", {
       wrapAround: true,
       autoPlay: 3000,
+      imagesLoaded: true
+
       // adaptiveHeight: true,
       // Other Flickity options...
     });
@@ -30,25 +32,25 @@ const AdSwiper = ({ pet, isArabic }) => {
       <div className="custom-container container-fluid">
         <div className="carousel-pet">
         {pet.pet_image_url && (
-          <div className="carousel-cell">
+       
             <img
               src={pet.pet_image_url}
               alt="Main Pet Image"
-              className="pet-slider"
+              className="carousel-cell"
             />
-          </div>
+ 
         )}
 
         {pet.additional_images && pet.additional_images.length > 0 && (
           <>
             {pet.additional_images.map((imageUrl, key) => (
-              <div key={key} className="carousel-cell">
+              
                 <img
                   src={imageUrl}
                   alt={`Image ${key}`}
-                  className="pet-slider"
+                  className="carousel-cell"
                 />
-              </div>
+              
             ))}
           </>
         )}

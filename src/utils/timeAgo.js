@@ -2,6 +2,7 @@ import translations from "./translations";
 
 function timeAgo(dateString, language) {
     const date = new Date(dateString);
+    console.log(date)
     const now = new Date();
     const secondsPast = (now - date) / 1000;
 

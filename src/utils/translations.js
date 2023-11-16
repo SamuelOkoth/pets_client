@@ -17,13 +17,19 @@ const translations = (count, translationKey, language) => {
     };
   
     const selectedTranslations = translationStrings[language] || translationStrings.en;
-  
-    if (selectedTranslations.hasOwnProperty(translationKey)) {
+
+    if (selectedTranslations.hasOwnProperty(translationKey) && typeof selectedTranslations[translationKey] === 'function') {
       return selectedTranslations[translationKey](count);
     }
   
     // Fallback to English if the provided language is not supported
-    return translationStrings.en[translationKey](count);
+    if (typeof translationStrings.en[translationKey] === 'function') {
+      return translationStrings.en[translationKey](count);
+    } else {
+      // Handle the case where the fallback translation is not a function
+      // You may want to return a default value or throw an error
+      return `Translation not found for key: ${translationKey}`;
+    }
   };
   
   export default translations;

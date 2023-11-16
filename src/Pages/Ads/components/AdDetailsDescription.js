@@ -14,7 +14,7 @@ const JobDetailsDescription = ({ pet }) => {
   const isArabic = () => {
     return i18n.language === "ar";
   };
-  console.log(pet)
+
   return (
     <React.Fragment>
       <Card className="job-detail overflow-hidden">
