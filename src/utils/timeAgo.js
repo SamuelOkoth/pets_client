@@ -1,24 +1,25 @@
-function timeAgo(dateString, translations) {
+import translations from "./translations";
+
+function timeAgo(dateString, language) {
     const date = new Date(dateString);
     const now = new Date();
-
     const secondsPast = (now - date) / 1000;
 
     if (secondsPast < 60) {
-        return secondsPast + ' ' + translations.secondsAgo(Math.round(secondsPast));
+        return translations(Math.round(secondsPast), 'secondsAgo', language);
     }
     if (secondsPast < 3600) {
-        return secondsPast + ' ' + translations.minutesAgo(Math.round(secondsPast / 60));
+        return translations(Math.round(secondsPast / 60), 'minutesAgo', language);
     }
     if (secondsPast <= 86400) {
-        return secondsPast + ' ' +translations.hoursAgo(Math.round(secondsPast / 3600));
+        return translations(Math.round(secondsPast / 3600), 'hoursAgo', language);
     }
     if (secondsPast > 86400) {
         const day = Math.round(secondsPast / 86400);
         if (day === 1) {
-            return translations.yesterday;
+            return translations(1, 'yesterday', language);
         } else {
-            return day + ' ' + translations.daysAgo(day);
+            return translations(day, 'daysAgo', language);
         }
     }
 }

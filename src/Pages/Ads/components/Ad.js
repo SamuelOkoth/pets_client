@@ -6,12 +6,14 @@ import { useSelector, useDispatch  } from "react-redux";
 import timeAgo from "../../../utils/timeAgo";
 import { GetUserProfileAsync } from "../../../../src/store/reducers/auth.reducer";
 import { sendMessageAsync } from "../../../../src/store/reducers/messages.reducer";
+
+
 import { toast } from "react-toastify";
 const Ad = ({deleteAd, ads}) => {
   const [adIdInModal, setAdIdInModal] = useState(null);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth?.token);
-  const { t } = useTranslation();
+  const { t, i18n  } = useTranslation();
   const [modal, setModal] = useState(false);
   const formRef = useRef(null);
   // const openModal = () => setModal(!modal);
@@ -19,14 +21,8 @@ const Ad = ({deleteAd, ads}) => {
   const [profileData, setProfileData] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const translations = {
-      secondsAgo: count => t("seconds ago", { count }),
-      minutesAgo: count => t("minutes ago", { count }),
-      hoursAgo: count => t("hours ago", { count }),
-      yesterday: t("yesterday"),
-      daysAgo: count => t("days ago", { count }),
-  };
-
+  const language = i18n.language;
+  
   useEffect(() => {
     if (token) {
       getProfileDat()
@@ -160,7 +156,7 @@ const handleSubmit = async (event) => {
                     </div>
                     <p className="text-muted mb-0">
                       {" "}
-                      {timeAgo(petAdDetail.updated_at, translations)}
+                      {timeAgo(petAdDetail.updated_at, language)}
                     </p>
                   </div>
                 </Col>
