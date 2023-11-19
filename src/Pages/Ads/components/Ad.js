@@ -158,7 +158,7 @@ const handleSubmit = async (event) => {
                       {" "}
                       {petAdDetail?.updated_at && (
                         <>
-                          {/* Display time ago */}
+                         
                           {timeAgo(petAdDetail.updated_at, language)}
                         </>
                       )}
