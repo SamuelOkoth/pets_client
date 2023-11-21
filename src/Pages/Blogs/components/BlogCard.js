@@ -10,11 +10,11 @@ const BlogCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/v1/posts");
+        const response = await fetch("https://api.petshelpful.com/api/v1/posts");
         
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+         
           setBlogData(data);
         } else {
           console.error("Failed to fetch blog data");
@@ -28,99 +28,15 @@ const BlogCard = () => {
   }, []);
 
 
-  // const blogText = [
-  //   {
-  //     id: 1,
-  //     blogImage: blogImage4,
-  //     blogAuther: "Alice Mellor",
-  //     blogDate: "Aug 08, 2021",
-  //     blogCount: 432,
-  //     blogTitle: "Smartest Applications for Business",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   },
-  //   {
-  //     id: 2,
-  //     blogImage: blogImage5,
-  //     blogAuther: "Kiera Finch",
-  //     blogDate: "July 23, 2021",
-  //     blogCount: 247,
-  //     blogTitle: "How To Increase Trade Show Traffic",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   },
-  //   {
-  //     id: 3,
-  //     blogImage: blogImage6,
-  //     blogAuther: "Toby Lees",
-  //     blogDate: "July 11, 2021",
-  //     blogCount: 188,
-  //     blogTitle: "How apps is changing the IT world",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   },
-  //   {
-  //     id: 4,
-  //     blogImage: blogImage7,
-  //     blogAuther: "Dominic Potter",
-  //     blogDate: "June 19, 2021",
-  //     blogCount: 475,
-  //     blogTitle: "Design your apps in your own way.",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   },
-  //   {
-  //     id: 5,
-  //     blogImage: blogImage8,
-  //     blogAuther: "Leon Davey",
-  //     blogDate: "June 04, 2021",
-  //     blogCount: 310,
-  //     blogTitle: "How to get creative in your work",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   },
-  //   {
-  //     id: 6,
-  //     blogImage: blogImage9,
-  //     blogAuther: "Harvey Bird",
-  //     blogDate: "Feb 28, 2021",
-  //     blogCount: 158,
-  //     blogTitle: "What planning process needs ?",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   }
-  // ];
-  // const blogVideo = [
-  //   {
-  //     id: 1,
-  //     blogLink: "https://www.youtube.com/embed/1y_kfWUCFDQ",
-  //     blogAuther: "Harvey Bird",
-  //     blogDate: "Feb 21, 2021",
-  //     blogCount: 110,
-  //     blogTitle: "How to become a best sale marketer in a year!",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   },
-  //   {
-  //     id: 2,
-  //     blogLink: "https://www.youtube.com/embed/1y_kfWUCFDQ",
-  //     blogAuther: "Harvey Bird",
-  //     blogDate: "Feb 09, 2021",
-  //     blogCount: 244,
-  //     blogTitle: "A day in the of a professional fashion designer",
-  //     blogContent:
-  //       "Intrinsically incubate intuitive opportunities and real-time potentialities Appropriately communicate one-to-one technology."
-  //   }
-  // ];
-
+  console.log(blogData);
   return (
     <React.Fragment>
       <Row>
-        {/* {blogText.map((blogTextDetails, key) => (
+        {blogData.map((blogTextDetails, key) => (
           <Col lg={6} className="mb-4" key={key}>
             <Card className="blog-grid-box p-2">
               <img
-                src={blogTextDetails.blogImage}
+                src={blogTextDetails.featured_image}
                 alt=""
                 className="img-fluid"
               />
@@ -128,25 +44,22 @@ const BlogCard = () => {
                 <ul className="list-inline d-flex justify-content-between mb-3">
                   <li className="list-inline-item">
                     <p className="text-muted mb-0">
-                      <Link to="/blogdetails" className="text-muted fw-medium">
-                        {blogTextDetails.blogAuther}
-                      </Link>{" "}
-                      - {blogTextDetails.blogDate}
-                    </p>
-                  </li>
-                  <li className="list-inline-item">
-                    <p className="text-muted mb-0">
-                      <i className="mdi mdi-eye"></i>{" "}
-                      {blogTextDetails.blogCount}
+                      {blogTextDetails.created_at}
                     </p>
                   </li>
                 </ul>
                 <Link to="/blogdetails" className="primary-link">
-                  <h6 className="fs-17">{blogTextDetails.blogTitle}</h6>
+                  <h6 className="fs-17">{blogTextDetails.title}</h6>
                 </Link>
-                <p className="text-muted">{blogTextDetails.blogContent}</p>
+                <div className="text-muted">
+                  {blogTextDetails.content
+                    .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
+                    .split(' ') // Split the text into words
+                    .slice(0, 20) // Take the first three words
+                    .join(' ')} {/* Join the words back into a string */}
+                </div>
                 <div>
-                  <Link to="/blogdetails" className="form-text text-primary">
+                  <Link to={`/blogdetails/${encodeURIComponent(blogTextDetails.title)}`} className="form-text text-primary">
                     {t("read_more")} <i className="uil uil-angle-right-b"></i>
                   </Link>
                 </div>
@@ -154,48 +67,6 @@ const BlogCard = () => {
             </Card>
           </Col>
         ))}
-
-        {blogVideo.map((blogVideoDetails, key) => (
-          <Col lg={6} mb={4} key={key}>
-            <Card className="blog-grid-box p-2">
-              <div className="ratio ratio-16x9">
-                {" "}
-                <iframe
-                  src={blogVideoDetails.blogLink}
-                  title="YouTube video"
-                  allowFullScreen
-                ></iframe>{" "}
-              </div>
-              <CardBody>
-                <ul className="list-inline d-flex justify-content-between mb-3">
-                  <li className="list-inline-item">
-                    <p className="text-muted mb-0">
-                      <Link to="/blogauther" className="text-muted fw-medium">
-                        {blogVideoDetails.blogAuther}
-                      </Link>{" "}
-                      - {blogVideoDetails.blogDate}
-                    </p>
-                  </li>
-                  <li className="list-inline-item">
-                    <p className="text-muted mb-0">
-                      <i className="mdi mdi-eye"></i>{" "}
-                      {blogVideoDetails.blogCount}
-                    </p>
-                  </li>
-                </ul>
-                <Link to="/blogdetails" className="primary-link">
-                  <h6 className="fs-17">{blogVideoDetails.blogTitle}</h6>
-                </Link>
-                <p className="text-muted">{blogVideoDetails.blogContent}</p>
-                <div>
-                  <Link to="/blogdetails" className="form-text text-primary">
-                    {t("read_more")} <i className="uil uil-angle-right-b"></i>
-                  </Link>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        ))} */}
       </Row>
     </React.Fragment>
   );

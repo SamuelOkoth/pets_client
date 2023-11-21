@@ -55,7 +55,7 @@ function App() {
         <Route exact path="/" element={<AdsList />} />
         <Route exact path="/ads/:id" element={<AdDetails />} />
         <Route exact path="/blogs" element={<BlogsList />} />
-        <Route exact path="/blogdetails" element={<BlogDetails />} />
+        <Route path="/blogdetails/:title" element={<BlogDetails />} />
         <Route exact path="/about" element={<AboutUs />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/faqs" element={<Faqs />} />

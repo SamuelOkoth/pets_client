@@ -143,6 +143,7 @@ const handleSubmit = async (event) => {
                       <i className="mdi mdi-map-marker text-primary me-1"></i>
                     </div>
                     <p className="text-muted mb-0">
+                       {console.log(petAdDetail.country)}
                       {t(`countries.${petAdDetail.country}`)}
                       
                     </p>
