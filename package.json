@@ -27,6 +27,7 @@
     "react-google-login": "^5.2.2",
     "react-hook-form": "^7.45.4",
     "react-i18next": "^13.1.2",
+    "react-icons": "^4.12.0",
     "react-image-lightbox": "^5.1.4",
     "react-masonry-component": "^6.3.0",
     "react-modern-drawer": "^1.2.0",
