@@ -1,5 +1,5 @@
-import { postRequest, getRequest, deleteRequest } from "../../config/axiosConfig";
-import { createAd,createFavAd, getAd, deleteAd, searchAd,complexFilter, searchByType, searchByCountry } from "../slices/ads.slice";
+import { postRequest, getRequest, deleteRequest, patchRequest } from "../../config/axiosConfig";
+import { createAd,createFavAd, getAd, deleteAd, searchAd,complexFilter, searchByType, searchByCountry, editAd } from "../slices/ads.slice";
 
 export function createAdsAsync(data) {
   return async (dispatch, _getState) => {
@@ -8,6 +8,15 @@ export function createAdsAsync(data) {
     window.location.replace(res.checkout_link);
   };
 }
+
+export function editAdAsync(data, id) {
+  return async (dispatch, _getState) => {
+    const res = await patchRequest(`api/v1/pets/${id}/`, data);
+    dispatch(editAd(res?.ad));
+    window.location.replace("/manageads");
+  };
+}
+
 export function createFavAdsAsync(data) {
   return async (dispatch, _getState) => {
     const res = await postRequest("favourite_ads", data);

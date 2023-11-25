@@ -17,9 +17,16 @@ const adsSlice = createSlice({
         state.filteredAds.push(action.payload);
       }
     },
+    editAd: (state, action) => {
+      state.ads.push(action.payload);
+      if (action.payload.name.includes(state.searchTerm)) {
+        state.filteredAds.push(action.payload);
+      }
+    },
     createFavAd: (state, action) => {
       state.favAds.push(action.payload);
     },
+    
 
     getAd: (state, action) => {
       state.ads = action.payload;
@@ -83,5 +90,6 @@ export const {
   complexFilter,
   searchByCountry,
   searchByType,
+  editAd,
 } = adsSlice.actions;
 export default adsSlice.reducer;

@@ -16,6 +16,7 @@ import Subscribe from "./commonComponents/Subscribe";
 import Faqs from "./Pages/Faqs/Faqs";
 import TermAndConditions from "./Pages/TermAndConditions/TermAndConditions";
 import ManageAds from "./Pages/Profile/ManageAds/ManageAds";
+import EditAd from "./Pages/Profile/ManageAds/EditAd";
 import FavoriteAds from "./Pages/Profile/FavouriteAds/FavoriteAds";
 import MyProfile from "./Pages/Profile/Profile/MyProfile";
 import SignOut from "./Pages/AuthPages/SignOut";
@@ -61,6 +62,7 @@ function App() {
         <Route exact path="/faqs" element={<Faqs />} />
         <Route exact path="/termandconditions" element={<TermAndConditions />} />
         <Route exact path="/manageads" element={<PrivateRoute><ManageAds /></PrivateRoute>} />
+        <Route exact path="/edit-ad/:id" element={<PrivateRoute><EditAd /></PrivateRoute>} />
         <Route exact path="/favoriteads" element={<PrivateRoute><FavoriteAds /></PrivateRoute>} />
         <Route exact path="/myprofile" element={<PrivateRoute><MyProfile /></PrivateRoute>} />
         <Route exact path="/signout" element={<ProtectedRoute><SignOut /></ProtectedRoute>} />
