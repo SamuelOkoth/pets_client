@@ -225,6 +225,7 @@
   "pet_name_label": "اسم الحيوان الأليف",
   "existing_images_label": "الصور الموجودة",
   "pet_name_placeholder": "الاسم",
+  "no_existing_images_message": "لا توجد صور موجودة",
   "pet_description_label": "وصف الحيوان الأليف",
   "pet_description_placeholder": "أدخل وصف الحيوان الأليف",
   "pet_gender_label": "جنس الحيوان الأليف",

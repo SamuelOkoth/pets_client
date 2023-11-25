@@ -422,8 +422,8 @@ const handleAdSCreate = async (event) => {
                 </Col>
                 <Col lg={12}>
                     <div id="map" className="mb-4" style={{ height: "400px", width: "100%" }}></div>
-                    <input type="hidden" name="latitude" defaultValue={adDetails.latitude} />
-                    <input type="hidden" name="longitude" defaultValue={adDetails.longitude} />
+                    <input type="hidden" name="latitude" defaultValue={adDetails.latitude} value={DEFAULT_LATITUDE} />
+                    <input type="hidden" name="longitude" defaultValue={adDetails.longitude} value={DEFAULT_LONGITUDE} />
                 </Col>
                 <Col lg={3}>
                   <div className="mb-4">

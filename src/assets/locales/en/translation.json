@@ -217,6 +217,7 @@
   "post_ad_heading": "Post a New Ad!",
   "post_edit_ad_heading": "Edit Ad",
   "existing_images_label": "Existing Images",
+  "no_existing_images_message": "No existing images",
   "pet_name_label": "Pet Name",
   "pet_name_placeholder": "Name",
   "pet_description_label": "Pet Description",
