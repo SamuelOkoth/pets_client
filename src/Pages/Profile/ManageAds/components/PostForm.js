@@ -73,39 +73,68 @@ const PostForm = () => {
 
   script.onload = () => {
     const map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: DEFAULT_LATITUDE, lng: DEFAULT_LONGITUDE }, // Set initial map center.
-      zoom: 12, // Set initial zoom level.
+      center: { lat: DEFAULT_LATITUDE, lng: DEFAULT_LONGITUDE },
+      zoom: 12,
       disableDefaultUI: true,
-        // add back fullscreen, streetview, zoom
-        zoomControl: true,
-        streetViewControl: true,
-        fullscreenControl: true
+      zoomControl: true,
+      streetViewControl: true,
+      fullscreenControl: true,
     });
-    
-   // Create an overlay div to contain the search input
-  const input = document.createElement("input");
-  input.type = "text";
-  input.id = "locationInput";
-  input.placeholder = "Search for a location";
-  input.style.width = "200px";
-  input.style.height = "44px"; // Set the height to 44px
-  input.style.padding = "8px"; // Add padding for spacing
 
-  // Append the input to the map div with ID "map" at the TOP_LEFT position
-  const mapDiv = document.getElementById("map");
-  map.controls[window.google.maps.ControlPosition.TOP_LEFT].push(input);
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = "locationInput";
+    input.placeholder = "Search for a location";
+    input.style.width = "200px";
+    input.style.height = "44px";
+    input.style.padding = "8px";
 
-  const searchBox = new window.google.maps.places.SearchBox(input);
+    const mapDiv = document.getElementById("map");
+    map.controls[window.google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  // Move the input to be the first element at the TOP_LEFT position
-  const mapControls = map.controls[window.google.maps.ControlPosition.TOP_LEFT].getArray();
-  mapControls.unshift(mapControls.pop());
+    const searchBox = new window.google.maps.places.SearchBox(input);
+
+    const mapControls = map.controls[window.google.maps.ControlPosition.TOP_LEFT].getArray();
+    mapControls.unshift(mapControls.pop());
 
     map.addListener("bounds_changed", () => {
       searchBox.setBounds(map.getBounds());
     });
 
     let marker;
+
+    // Add a click event listener to the map
+    map.addListener("click", (event) => {
+      // Remove existing marker if any
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      // Create a new marker at the clicked location
+      marker = new window.google.maps.Marker({
+        map,
+        position: event.latLng,
+      });
+
+      // Update latitude and longitude
+      const newLatitude = event.latLng.lat();
+      const newLongitude = event.latLng.lng();
+
+      setLatitude(newLatitude);
+      setLongitude(newLongitude);
+    });
+
+    // Check if adDetails.latitude and adDetails.longitude are defined
+    if (adDetails.latitude && adDetails.longitude) {
+      const markerPosition = new window.google.maps.LatLng(adDetails.latitude, adDetails.longitude);
+      marker = new window.google.maps.Marker({
+        map,
+        position: markerPosition,
+      });
+
+      // Center the map on the marker
+      map.setCenter(markerPosition);
+    }
 
     searchBox.addListener("places_changed", () => {
       const places = searchBox.getPlaces();
@@ -117,6 +146,7 @@ const PostForm = () => {
       const place = places[0];
       map.setCenter(place.geometry.location);
 
+      // Update the marker
       if (marker) {
         marker.setMap(null);
       }
@@ -142,7 +172,9 @@ const PostForm = () => {
       document.body.removeChild(input);
     }
   };
-}, []);
+}, [DEFAULT_LATITUDE, DEFAULT_LONGITUDE, adDetails.latitude, adDetails.longitude]);
+
+
 
 useEffect(()=>{
   getAdsDetails()
@@ -422,8 +454,8 @@ const handleAdSCreate = async (event) => {
                 </Col>
                 <Col lg={12}>
                     <div id="map" className="mb-4" style={{ height: "400px", width: "100%" }}></div>
-                    <input type="hidden" name="latitude" defaultValue={adDetails.latitude} value={DEFAULT_LATITUDE} />
-                    <input type="hidden" name="longitude" defaultValue={adDetails.longitude} value={DEFAULT_LONGITUDE} />
+                    <input type="hidden" name="latitude" value={latitude || adDetails.latitude || ''} />
+                    <input type="hidden" name="longitude" value={longitude || adDetails.longitude || ''} />
                 </Col>
                 <Col lg={3}>
                   <div className="mb-4">
