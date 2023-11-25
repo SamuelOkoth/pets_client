@@ -20,11 +20,19 @@ const PostForm = () => {
  // State for latitude and longitude
  const [latitude, setLatitude] = useState(null);
  const [longitude, setLongitude] = useState(null);
+ const [removedImageIds, setRemovedImageIds] = useState([]);
+ const [removedImageIdsChanged, setRemovedImageIdsChanged] = useState(false);
+
  // Constants for Google Maps initialization
  const [DEFAULT_LATITUDE, setDefaultLatitude] = useState(0);
  const [DEFAULT_LONGITUDE, setDefaultLongitude] = useState(0);
  const [userCountry, setUserCountry] = useState("Loading...");
  const [selectedCountry, setSelectedCountry] = useState(""); // State variable to hold the selected country
+
+ // Update removedImageIdsChanged when removedImageIds changes
+ useEffect(() => {
+  setRemovedImageIdsChanged(true);
+}, [removedImageIds]);
 
  useEffect(() => {
   // Fetch user's IP address information
@@ -150,6 +158,34 @@ const getAdsDetails = async ()=>{
   }
 }
 
+const handleRemoveImage = (imageId) => {
+  // Assuming you have an action creator to remove an image
+  const removeImageAction = (imageId) => ({
+    type: 'REMOVE_IMAGE',
+    payload: { imageId },
+  });
+
+  // Dispatch the action
+  dispatch(removeImageAction(imageId));
+
+  // Get the current removedImageIds from the state
+  const currentRemovedImageIds = [...removedImageIds];
+
+  // Add the removed imageId to the array if it doesn't exist already
+  if (!currentRemovedImageIds.includes(imageId)) {
+    currentRemovedImageIds.push(imageId);
+  }
+
+  // Set the updated removedImageIds in the state
+  setRemovedImageIds(currentRemovedImageIds);
+  console.log(removedImageIds);
+  // You might also want to update the local state, if necessary
+  setAdDetails((prevAdDetails) => ({
+    ...prevAdDetails,
+    additional_images: prevAdDetails.additional_images.filter(image => image.id !== imageId),
+  }));
+
+};
 
 const handleAdSCreate = async (event) => {
   event.preventDefault();
@@ -173,7 +209,9 @@ const handleAdSCreate = async (event) => {
   try {
     const sendData = {
       ad: formDataObject,
+      removedImageIds: removedImageIds,
     };
+    console.log(sendData);
     await dispatch(editAdAsync(sendData, id));
     toast.success("Ad updated successfully");
     // navigate("/signin");
@@ -196,6 +234,8 @@ const handleAdSCreate = async (event) => {
     displayErrorToasts(error?.response?.data?.error);
   } finally {
     setLoading(false);
+    // Reset removedImageIdsChanged after the update
+    setRemovedImageIdsChanged(false);
   }
 };
   return (
@@ -428,6 +468,27 @@ const handleAdSCreate = async (event) => {
                       accept="image/*"
                     />
                     <input type="hidden" name="userCountry" id="userCountryInput" value={userCountry} />
+                  </div>
+                </Col>
+                <Col lg={12}>
+                  <div className="mb-4">
+                    <Label htmlFor="existingImages" className="form-label">
+                      {t("existing_images_label")}
+                    </Label>
+                    {adDetails.additional_images && adDetails.additional_images.length > 0 ? (
+                      <ul className="additional-images-wrapper">
+                        {adDetails.additional_images.map((image) => (
+                          <li key={image.id} >
+                            <img src={image.url} alt={`Image ${image.id}`} style={{ maxWidth: "100px", maxHeight: "100px"}} />
+                            <button type="button" onClick={() => handleRemoveImage(image.id)} className="remove-image">
+                              X
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>{t("no_existing_images_message")}</p>
+                    )}
                   </div>
                 </Col>
                 <Col lg={12}>

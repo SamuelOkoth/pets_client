@@ -46,7 +46,7 @@ const AdSwiper = ({ pet, isArabic }) => {
             {pet.additional_images.map((imageUrl, key) => (
               
                 <img
-                  src={imageUrl}
+                  src={imageUrl.url}
                   alt={`Image ${key}`}
                   className="carousel-cell"
                 />
