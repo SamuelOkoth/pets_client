@@ -53,22 +53,37 @@ const JobDetailsDescription = ({ pet }) => {
           </div>
 
           <div className="mt-4 pt-3">
-            <ul className="list-inline mb-0">
+          <ul className="list-inline mb-0">
               <li className="list-inline-item mt-1">{t('Share This Ad')}:</li>
               <li className="list-inline-item mt-1">
-                <Link to="#" className="btn btn-primary btn-hover">
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                  className="btn btn-primary btn-hover"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="uil uil-facebook-f"></i> {t('Facebook')}
-                </Link>
+                </a>
               </li>
               <li className="list-inline-item mt-1">
-                <Link to="#" className="btn btn-danger btn-hover">
-                  <i className="uil uil-google"></i> {t('Google')}+
-                </Link>
+                <a
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+                  className="btn btn-danger btn-hover"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="uil uil-twitter"></i> {t('Twitter')}
+                </a>
               </li>
               <li className="list-inline-item mt-1">
-                <Link to="#" className="btn btn-success btn-hover">
-                  <i className="uil uil-linkedin-alt"></i> {t('Linkedin')}
-                </Link>
+                <a
+                  href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(window.location.href)}`}
+                  className="btn btn-success btn-hover"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="uil uil-linkedin-alt"></i> {t('LinkedIn')}
+                </a>
               </li>
             </ul>
           </div>
