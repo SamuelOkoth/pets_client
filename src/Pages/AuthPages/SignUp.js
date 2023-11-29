@@ -49,7 +49,7 @@ const SignUp = () => {
       navigate("/signin");
     } catch (error) {
       console.log("Error Sign Up Form:", error);
-      toast.error(error?.response?.data?.status?.message);
+      toast.error(error?.response?.data?.errors || "Something went wrong, please try again");
     } finally {
       setLoading(false);
     }
