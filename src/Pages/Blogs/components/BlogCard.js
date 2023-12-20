@@ -48,7 +48,7 @@ const BlogCard = () => {
                     </p>
                   </li>
                 </ul>
-                <Link to="/blogdetails" className="primary-link">
+                <Link to={`/blogdetails/${encodeURIComponent(blogTextDetails.title)}`} className="primary-link">
                   <h6 className="fs-17">{blogTextDetails.title}</h6>
                 </Link>
                 <div className="text-muted">
